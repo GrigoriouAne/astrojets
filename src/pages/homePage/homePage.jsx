@@ -1,10 +1,12 @@
 import styles from "./homePage.module.css";
 import reactLogo from "../../assets/react.svg";
 import viteLogo from "/vite.svg";
+import HomeBanner from "../../components/homeBanner/homeBanner";
 const HomePage = () => {
   return (
     <>
       <div>
+        <HomeBanner />
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
