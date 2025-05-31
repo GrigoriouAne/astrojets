@@ -1,0 +1,128 @@
+@font-face {
+  font-family: "astroboy";
+  src: url("../../assets/fonts/CryshGraffiti-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.navbar {
+  max-width: 100vw;
+  width: inherit;
+  position: sticky;
+  top: 0;
+  /* background-color: rgba(255, 255, 255, 0.281); */
+  color: white;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
+  transition: background-color 0.3s ease;
+}
+
+/* Logo */
+.logoContainer {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo {
+  width: 150px;
+}
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.096);
+}
+
+/* Nav links for desktop */
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  transition: max-height 0.3s ease;
+}
+
+/* Links */
+.navLinks a {
+  color: #ff0093;
+  text-decoration: none;
+  font-family: "astroboy", sans-serif;
+  font-size: 56px;
+}
+
+.navLinks a:hover {
+  color: #36a278;
+}
+
+/* Hamburger menu button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1000;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s linear;
+  position: relative;
+}
+
+/* Hamburger animation when active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 7px;
+  position: relative;
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: -7px;
+  position: relative;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navLinks {
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #222;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  .navLinks.open {
+    max-height: 300px; /* enough height to show all links */
+  }
+
+  .navLinks li {
+    padding: 1rem;
+    border-top: 1px solid #444;
+  }
+
+  .navLinks li:first-child {
+    border-top: none;
+  }
+}
