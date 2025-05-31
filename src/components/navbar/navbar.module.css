@@ -48,10 +48,12 @@
   text-decoration: none;
   font-family: "astroboy", sans-serif;
   font-size: 56px;
+  text-shadow: 6px 3px 0 #36a278, -1px 0 0 #36a278;
 }
 
 .navLinks a:hover {
   color: #36a278;
+  text-shadow: 6px 3px 0 #ff0093, -1px 0 0 #ff0093;
 }
 
 /* Hamburger menu button */
