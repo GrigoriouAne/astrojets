@@ -9,13 +9,6 @@
 }
 
 /* Optional dark overlay to improve text visibility */
-.banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* adjust as needed */
-  z-index: 1;
-}
 
 .videoWrapper {
   position: absolute;

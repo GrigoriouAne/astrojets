@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "astroboy";
+  src: url("../../assets/fonts/AstronBoy.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .navbar {
   max-width: 100vw;
   width: inherit;
@@ -10,7 +17,8 @@
   align-items: center;
   justify-content: space-between;
   z-index: 999;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
+  transition: background-color 0.3s ease;
 }
 
 /* Logo */
@@ -21,6 +29,9 @@
 
 .logo {
   width: 150px;
+}
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.096);
 }
 
 /* Nav links for desktop */
@@ -33,13 +44,16 @@
 
 /* Links */
 .navLinks a {
-  color: white;
+  color: #ff0093;
   text-decoration: none;
-  font-weight: 500;
+  font-family: "astroboy", sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  text-shadow: 1px 0 0 currentColor, -1px 0 0 currentColor;
 }
 
 .navLinks a:hover {
-  color: #ff6f61;
+  color: #36a278;
 }
 
 /* Hamburger menu button */
