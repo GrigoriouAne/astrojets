@@ -1,5 +1,5 @@
 import styles from "./Navbar.module.css";
-import logo from "../../assets/ASTRO_JETS.png";
+import logo from "../../assets/images/ASTRO_JETS.png";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
