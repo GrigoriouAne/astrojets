@@ -6,7 +6,9 @@ export default function Layout({ children }) {
   return (
     <div className={styles.container}>
       <Navbar />
-      <Outlet />
+      <div className={styles.content}>
+        <Outlet />
+      </div>
     </div>
   );
 }

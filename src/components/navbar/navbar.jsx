@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Navbar.module.css";
+import logo from "../../assets/ASTRO_JETS.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +9,9 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.logo}>MyLogo</div>
+      <div className={styles.logoContainer}>
+        <img className={styles.logo} src={logo} />
+      </div>
 
       <button
         className={`${styles.hamburger} ${isOpen ? styles.active : ""}`}

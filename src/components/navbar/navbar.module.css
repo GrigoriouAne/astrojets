@@ -3,7 +3,7 @@
   width: inherit;
   position: sticky;
   top: 0;
-  background-color: #222;
+  /* background-color: rgba(255, 255, 255, 0.281); */
   color: white;
   padding: 0.5rem 1rem;
   display: flex;
@@ -14,9 +14,13 @@
 }
 
 /* Logo */
-.logo {
+.logoContainer {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.logo {
+  width: 150px;
 }
 
 /* Nav links for desktop */
