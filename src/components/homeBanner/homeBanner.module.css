@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "astroboy";
+  src: url("../../assets/fonts/CryshGraffiti-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .banner {
   position: relative;
   width: 100%;
@@ -34,8 +41,12 @@
 
 .title {
   z-index: 2;
-  color: white;
-  font-size: 2.5rem;
+  color: #ff0093;
+  text-decoration: none;
+  font-family: "astroboy", sans-serif;
+  font-size: 106px;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black, 6px 3px 0 #36a278, -1px 0 0 #36a278;
   text-align: center;
   padding: 1rem;
 }
