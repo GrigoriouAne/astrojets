@@ -6,13 +6,14 @@ const HomePage = () => {
     <>
       <div>
         <HomeBanner />
+        <Pricing />
       </div>
     </>
   );
 };
 
-const jetski = () => {
-  return <div></div>;
+const Pricing = () => {
+  return <div id="pricing"></div>;
 };
 
 export default HomePage;
