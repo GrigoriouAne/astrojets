@@ -23,15 +23,58 @@
 .hide {
   transform: translateY(-100%);
 }
-
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
 /* Logo */
 .logoContainer {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .logo {
+  position: relative;
   width: 150px;
+  transition: transform 3s ease;
+  z-index: 700;
+}
+.waves {
+  width: 150px;
+  transform: rotate(-15deg) translateX(-80px) translateY(-40px);
+  z-index: 300;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+.logoContainer:hover .waves {
+  display: inline;
+  animation: blink 1s infinite;
+}
+.logoContainer:hover .logo {
+  animation: wiggle 0.8s ease-in-out infinite;
 }
 .scrolled {
   background-color: rgba(255, 255, 255, 0.096);

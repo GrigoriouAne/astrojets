@@ -1,5 +1,6 @@
 import styles from "./Navbar.module.css";
 import logo from "../../assets/images/ASTRO_JETS.png";
+import waves from "../../assets/images/waves.png";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
@@ -34,6 +35,7 @@ export default function Navbar() {
     >
       <div className={styles.logoContainer}>
         <img className={styles.logo} src={logo} />
+        <img className={styles.waves} src={waves} />
       </div>
 
       <ul className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
