@@ -90,18 +90,20 @@
 
 /* Links */
 .navLinks a {
-  color: #ff0093;
+  color: var(--primary-color);
   text-decoration: none;
   font-family: "astroboy", sans-serif;
   font-size: 56px;
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
-    1px 1px 0 black, 6px 3px 0 #36a278, -1px 0 0 #36a278;
+    1px 1px 0 black, 6px 3px 0 var(--secondary-color),
+    -1px 0 0 var(--secondary-color);
 }
 
 .navLinks a:hover {
-  color: #36a278;
+  color: var(--secondary-color);
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
-    1px 1px 0 black, 6px 3px 0 #ff0093, -1px 0 0 #ff0093;
+    1px 1px 0 black, 6px 3px 0 var(--primary-color),
+    -1px 0 0 var(--primary-color);
 }
 
 /* Hamburger menu button */

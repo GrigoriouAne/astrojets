@@ -3,7 +3,7 @@ import jetSkiImg from "../../assets/images/jetskiastro.png";
 import aboutUsImg from "../../assets/images/aboutusastro.png";
 import infoImg from "../../assets/images/infoastro.png";
 import { useEffect, useState } from "react";
-
+import useSmoothScroll from "../../hooks/useSmoothScroll";
 const MobileNavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -27,6 +27,8 @@ const MobileNavBar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  useSmoothScroll(0);
   return (
     <div
       className={`${styles.container} ${scrolled ? styles.scrolled : ""} ${
@@ -36,8 +38,8 @@ const MobileNavBar = () => {
       <a href="#about" className={styles.leftLink}>
         <img className={styles.leftImg} src={aboutUsImg} alt="About Us" />
       </a>
-      <a href="#home" className={styles.centerLink}>
-        <img className={styles.centerImg} src={jetSkiImg} alt="Home" />
+      <a href="#plans" className={styles.centerLink}>
+        <img className={styles.centerImg} src={jetSkiImg} alt="plans" />
       </a>
       <a href="#info" className={styles.rightLink}>
         <img className={styles.rightImg} src={infoImg} alt="Info" />

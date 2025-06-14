@@ -1,0 +1,44 @@
+.pricingTitle {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 599px) {
+  .pricintContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .pricingTitle {
+    font-size: 48px;
+  }
+}
+
+/* Small devices (large phones, small tablets) */
+@media (min-width: 600px) and (max-width: 767px) {
+  .pricingTitle {
+    font-size: 48px;
+  }
+}
+
+/* Medium devices (tablets, small laptops) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .pricingTitle {
+    font-size: 48px;
+  }
+}
+
+/* Large devices (laptops, desktops) */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1200px) {
+  .pricingTitle {
+    font-size: 48px;
+  }
+}

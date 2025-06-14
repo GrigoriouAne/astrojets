@@ -33,15 +33,15 @@ export default function Navbar() {
         hidden ? styles.hide : ""
       }`}
     >
-      <div className={styles.logoContainer}>
+      <a href="#home" className={styles.logoContainer}>
         <img className={styles.logo} src={logo} />
         <img className={styles.waves} src={waves} />
-      </div>
+      </a>
 
       <ul className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
         <li>
-          <a href="#pricing" onClick={() => setIsOpen(false)}>
-            Pricing
+          <a href="#plans" onClick={() => setIsOpen(false)}>
+            Plans
           </a>
         </li>
         <li>
