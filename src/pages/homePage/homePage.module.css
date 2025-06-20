@@ -1,33 +1,89 @@
-.pricingTitle {
+.plansTitle,
+.infoTitle {
   font-family: "astroboy";
   color: var(--primary-color);
+  text-align: center;
+}
+.infoLink,
+.emailLink {
+  font-family: "numbers";
+  text-decoration: none;
+  color: white;
+}
+
+.mapTitle {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 5px 5px black;
+
   text-align: center;
 }
 
 /* Extra small devices (phones) */
 @media (max-width: 599px) {
-  .pricintContainer {
+  .plansContainer,
+  .infoContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 16px;
   }
-  .pricingTitle {
+  .plansTitle,
+  .infoTitle,
+  .mapTitle {
     font-size: 48px;
+  }
+
+  .plansTitle {
+    margin-bottom: 0;
+  }
+
+  .infoContainer {
+    background-image: url("waves-background.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #035894;
+  }
+  .infoImg {
+    width: 70%;
+  }
+  .infoCard {
+    width: 90%;
+    padding: 16px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .infoLink {
+    font-size: 32px;
+    text-shadow: 5px 5px black;
+  }
+
+  .emailLink {
+    text-shadow: 5px 5px black;
+    font-size: 28px;
+  }
+  .socialMediaContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 5px 5px black;
+    font-size: 48px;
+    gap: 32px;
   }
 }
 
 /* Small devices (large phones, small tablets) */
 @media (min-width: 600px) and (max-width: 767px) {
-  .pricingTitle {
+  .plansTitle {
     font-size: 48px;
   }
 }
 
 /* Medium devices (tablets, small laptops) */
 @media (min-width: 768px) and (max-width: 991px) {
-  .pricingTitle {
+  .plansTitle {
     font-size: 48px;
   }
 }
@@ -38,7 +94,7 @@
 
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
-  .pricingTitle {
+  .plansTitle {
     font-size: 48px;
   }
 }
