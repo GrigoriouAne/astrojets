@@ -14,6 +14,7 @@ const HomePage = () => {
       <div>
         <HomeBanner id="home" />
         <Plans />
+        <AboutUs />
         <Info />
       </div>
     </>
@@ -28,6 +29,14 @@ const Plans = () => {
       <PricingCard minutes={20} image="pro-plan.png" />
       <PricingCard minutes={30} image="business-plan.png" />
       <PricingCard minutes={40} image="enterprise-plan.png" />
+    </div>
+  );
+};
+
+const AboutUs = () => {
+  return (
+    <div id="aboutUs" className={styles.aboutUsContainer}>
+      <h1 className={styles.aboutUsTitle}>About Us</h1>
     </div>
   );
 };

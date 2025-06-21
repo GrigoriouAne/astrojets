@@ -35,7 +35,7 @@ const MobileNavBar = () => {
         hidden ? styles.hide : ""
       }`}
     >
-      <a href="#about" className={styles.leftLink}>
+      <a href="#aboutUs" className={styles.leftLink}>
         <img className={styles.leftImg} src={aboutUsImg} alt="About Us" />
       </a>
       <a href="#plans" className={styles.centerLink}>
