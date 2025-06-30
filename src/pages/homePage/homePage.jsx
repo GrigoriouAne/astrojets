@@ -37,6 +37,21 @@ const AboutUs = () => {
   return (
     <div id="aboutUs" className={styles.aboutUsContainer}>
       <h1 className={styles.aboutUsTitle}>About Us</h1>
+      <p className={styles.aboutUsText}>
+        👊 AstroJets – Two friends, one dream, endless rides We are the
+        AstroBoys. Two childhood friends who grew up on cartoons, endless
+        summers, and the feeling that life’s better when you have someone next
+        to you who balances you out. The first boy is the voice of reason —
+        responsible, grounded, always thinking ahead. The second boy is the
+        spark — a dreamer, spontaneous, full of "let's go now!" energy. They may
+        seem like opposites. But that’s exactly what makes it work. Where one
+        hits the brakes, the other pushes the throttle. And somewhere between
+        logic and imagination, AstroJets was born — inspired by childhood
+        cartoons, driven by a shared dream, and fueled by real friendship.
+        Today, in Nea Peramos, Kavala, we don’t just rent out jet skis. We offer
+        experiences. Memories. Stories you’ll tell at the end of the summer.
+        AstroJets When imagination meets responsibility… and becomes a wave. 🌊
+      </p>
     </div>
   );
 };

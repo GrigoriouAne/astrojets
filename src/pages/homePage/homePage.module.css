@@ -1,5 +1,6 @@
 .plansTitle,
-.infoTitle {
+.infoTitle,
+.aboutUsTitle {
   font-family: "astroboy";
   color: var(--primary-color);
   text-align: center;
@@ -31,12 +32,31 @@
   }
   .plansTitle,
   .infoTitle,
-  .mapTitle {
+  .mapTitle,
+  .aboutUsTitle {
     font-size: 48px;
   }
 
   .plansTitle {
     margin-bottom: 0;
+  }
+
+  .aboutUsContainer {
+    background-image: url(beach.png);
+    background-size: 130%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutUsText {
+    color: rgb(39, 39, 39);
+    font-family: "numbers";
+    font-size: 20px;
+    text-align: justify;
+    width: 90%;
   }
 
   .infoContainer {

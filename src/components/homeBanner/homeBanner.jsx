@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./HomeBanner.module.css";
 
+import bgVideo from "../../assets/video/astroBoy.mp4";
 const HomeBanner = () => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth <= 768 : false
@@ -28,20 +29,32 @@ const HomeBanner = () => {
     };
   }, []);
   const videoUrl = isMobile
-    ? "https://www.youtube.com/embed/L7YDWmUtEiQ?autoplay=1&mute=1&loop=1&playlist=L7YDWmUtEiQ&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1"
+    ? bgVideo
     : "https://www.youtube-nocookie.com/embed/HSYBZ2MC9GU?autoplay=1&mute=1&loop=1&playlist=HSYBZ2MC9GU&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1";
 
   return (
     <div id="home" className={styles.banner}>
       <div className={styles.videoWrapper}>
-        <iframe
-          className={styles.video}
-          src={videoUrl}
-          allow="autoplay; fullscreen"
-          allowFullScreen
-          title="Background Video"
-        />
+        {isMobile ? (
+          <video
+            className={styles.video}
+            src={bgVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        ) : (
+          <iframe
+            className={styles.video}
+            src={videoUrl}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            title="Background Video"
+          />
+        )}
       </div>
+
       <h1 className={styles.title}>ASTRO JETS</h1>
     </div>
   );
