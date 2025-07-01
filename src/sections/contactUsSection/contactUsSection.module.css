@@ -1,15 +1,12 @@
-.infoTitle {
-  font-family: "astroboy";
-  color: var(--primary-color);
-  text-align: center;
-}
-.infoLink,
+.link,
 .emailLink {
   font-family: "numbers";
   text-decoration: none;
   color: white;
 }
 
+.title,
+.socialTitle,
 .mapTitle {
   font-family: "astroboy";
   color: var(--primary-color);
@@ -20,22 +17,27 @@
 
 /* Extra small devices (phones) */
 @media (max-width: 599px) {
-  .infoContainer {
+  .container {
     align-items: center;
     justify-content: center;
     gap: 16px;
   }
 
-  .infoTitle,
+  .title {
+    font-size: 48px;
+    margin: 0;
+  }
+
+  .socialTitle,
   .mapTitle {
     font-size: 48px;
   }
 
-  .infoContainer {
+  .container {
     gap: 0;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
-  .infoTitleContainer {
+  .titleContainer {
     width: 100%;
     height: 400px;
     background-color: #fbbc36;
@@ -45,7 +47,7 @@
     background-position: bottom;
     background-repeat: no-repeat;
   }
-  .infoContentContainer {
+  .contentContainer {
     display: flex;
     justify-content: center;
     background-color: #035894;
@@ -55,7 +57,7 @@
   .infoImg {
     width: 70%;
   }
-  .infoCard {
+  .card {
     width: 90%;
     padding: 16px 5px;
     display: flex;
@@ -69,7 +71,7 @@
     text-align: center;
     text-shadow: 5px 5px black;
   }
-  .infoLink {
+  .link {
     font-size: 32px;
     text-shadow: 5px 5px black;
   }

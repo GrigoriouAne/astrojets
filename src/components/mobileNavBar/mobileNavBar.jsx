@@ -38,11 +38,11 @@ const MobileNavBar = () => {
       <a href="#aboutUs" className={styles.leftLink}>
         <img className={styles.leftImg} src={aboutUsImg} alt="About Us" />
       </a>
-      <a href="#plans" className={styles.centerLink}>
-        <img className={styles.centerImg} src={jetSkiImg} alt="plans" />
+      <a href="#ourPackages" className={styles.centerLink}>
+        <img className={styles.centerImg} src={jetSkiImg} alt="Our Packages" />
       </a>
-      <a href="#info" className={styles.rightLink}>
-        <img className={styles.rightImg} src={infoImg} alt="Info" />
+      <a href="#contactUs" className={styles.rightLink}>
+        <img className={styles.rightImg} src={infoImg} alt="Contact Us" />
       </a>
     </div>
   );

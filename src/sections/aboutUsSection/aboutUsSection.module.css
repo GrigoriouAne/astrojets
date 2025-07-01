@@ -1,0 +1,65 @@
+.title {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-align: center;
+  text-shadow: 5px 5px black;
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 599px) {
+  .title {
+    font-size: 48px;
+    transform: translateY(50px);
+  }
+
+  .container {
+    background-size: 130%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titleContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-image: url(beach.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+  }
+
+  .contentContainer {
+    display: flex;
+    justify-content: center;
+    background-color: #fbbc36;
+    transform: translateY(-1px);
+  }
+
+  .text {
+    color: rgb(39, 39, 39);
+    font-family: "numbers";
+    font-size: 20px;
+    text-align: center;
+    width: 90%;
+  }
+}
+
+/* Small devices (large phones, small tablets) */
+@media (min-width: 600px) and (max-width: 767px) {
+}
+
+/* Medium devices (tablets, small laptops) */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* Large devices (laptops, desktops) */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1200px) {
+}
