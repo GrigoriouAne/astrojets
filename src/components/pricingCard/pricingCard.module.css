@@ -50,6 +50,6 @@
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
   .container {
-    height: 500px;
+    height: 400px;
   }
 }

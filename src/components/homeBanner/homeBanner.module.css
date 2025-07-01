@@ -1,7 +1,7 @@
 .banner {
   position: relative;
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100); /* Full height, safe on mobile */
+  height: 101vh; /* Full height, safe on mobile */
   overflow: hidden;
   display: flex;
   align-items: center;
