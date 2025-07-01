@@ -50,6 +50,12 @@
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
   .container {
-    height: 400px;
+    height: 300px;
+    width: 700px;
+  }
+  .minutes {
+    transform: rotate(-34deg) translate(11px, -140px);
+    padding-left: 32px;
+    font-size: 28px;
   }
 }
