@@ -65,6 +65,7 @@
     display: flex;
     justify-content: center;
     background-color: #fbbc36;
+    transform: translateY(-1px);
   }
 
   .aboutUsText {
@@ -77,6 +78,7 @@
 
   .infoContainer {
     gap: 0;
+    transform: translateY(-1px);
   }
   .infoTitleContainer {
     width: 100%;
@@ -93,6 +95,7 @@
     justify-content: center;
     background-color: #035894;
     width: 100%;
+    transform: translateY(-1px);
   }
   .infoImg {
     width: 70%;
