@@ -108,10 +108,69 @@
 
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
+  .container {
+    background-color: rgb(23, 18, 89);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .titleContainer {
     width: 100%;
   }
   .title {
     font-size: 68px;
+    text-shadow: 5px 5px white;
+  }
+  .subTitle {
+    font-family: "numbers";
+    color: var(--primary-color);
+  }
+  .contentContainer {
+    display: flex;
+    gap: 100px;
+    max-width: 1500px;
+  }
+  .leftContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .phoneContainer {
+    display: flex;
+  }
+
+  .phoneLinksContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .link {
+    font-size: 32px;
+    text-shadow: 5px 5px black;
+  }
+
+  .emailLink {
+    text-shadow: 5px 5px black;
+    font-size: 28px;
+  }
+
+  .emailContainer {
+    display: flex;
+  }
+
+  .socialMediaContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 5px 5px black;
+    font-size: 48px;
+    gap: 32px;
+  }
+
+  .locationText {
+    font-family: "numbers";
+    font-size: 22px;
+    text-align: center;
+    text-shadow: 5px 5px black;
   }
 }

@@ -34,4 +34,7 @@
 
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
+  .image {
+    width: 100px;
+  }
 }
