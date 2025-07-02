@@ -52,6 +52,8 @@
   .container {
     height: 300px;
     width: 700px;
+    border-radius: 0;
+    border: 5px solid black;
   }
   .minutes {
     transform: rotate(-34deg) translate(11px, -140px);

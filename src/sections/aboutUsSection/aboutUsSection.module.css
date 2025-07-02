@@ -62,4 +62,64 @@
 
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 68px;
+  }
+
+  .text,
+  .leftText,
+  .rightText {
+    font-family: "numbers";
+    color: #000;
+    text-align: center;
+    max-width: 1500px;
+    font-size: 24px;
+  }
+
+  .leftTextContainer,
+  .rightTextContainer {
+    border: 5px solid black;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+  }
+
+  .leftTextContainer {
+    background-color: #e52763;
+  }
+
+  .rightTextContainer {
+    background-color: #fbe139;
+  }
+
+  .leftText,
+  .rightText {
+    text-align: center;
+    margin: 0;
+  }
+
+  .middleContainer {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 1500px;
+    gap: 8px;
+  }
+
+  .whoAreYouImg {
+    border: 5px solid black;
+    padding: 4px;
+  }
+  .sparkImg,
+  .speakerImg {
+    width: 100%;
+  }
 }

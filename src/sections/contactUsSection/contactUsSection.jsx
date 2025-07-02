@@ -4,8 +4,12 @@ import styles from "./contactUsSection.module.css";
 import phoneIcon from "../../assets/images/call_phone-Photoroom.png";
 import emailIcon from "../../assets/images/mail-Photoroom.png";
 import { FaTiktok, FaInstagram } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
 
 const ContactUsSection = () => {
+  const isDesktop = useMediaQuery({ minWidth: 992 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <div id={"contactUs"} className={styles.container}>
       <div className={styles.titleContainer}>
