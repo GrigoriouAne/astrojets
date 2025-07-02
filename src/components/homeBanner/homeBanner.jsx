@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./HomeBanner.module.css";
-
+import bannerImg from "../../assets/images/astrobanner.png";
 import bgVideo from "../../assets/video/astroBoy.mp4";
 const HomeBanner = () => {
   const [isMobile, setIsMobile] = useState(
@@ -45,13 +45,14 @@ const HomeBanner = () => {
             playsInline
           />
         ) : (
-          <iframe
-            className={styles.video}
-            src={videoUrl}
-            allow="autoplay; fullscreen"
-            allowFullScreen
-            title="Background Video"
-          />
+          <img className={styles.video} src={bannerImg} />
+          // <iframe
+          //   className={styles.video}
+          //   src={videoUrl}
+          //   allow="autoplay; fullscreen"
+          //   allowFullScreen
+          //   title="Background Video"
+          // />
         )}
       </div>
 

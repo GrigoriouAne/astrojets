@@ -15,6 +15,14 @@ const ContactUsSection = () => {
       <div className={styles.titleContainer}>
         <h1 className={styles.title}>Contact Us</h1>
       </div>
+      {(isMobile || isTablet) && <MobileOrTabletComponent />}
+    </div>
+  );
+};
+
+const MobileOrTabletComponent = () => {
+  return (
+    <>
       <div className={styles.contentContainer}>
         <div className={styles.card}>
           <Icon source={phoneIcon} />
@@ -51,8 +59,12 @@ const ContactUsSection = () => {
           <Map />
         </div>
       </div>
-    </div>
+    </>
   );
+};
+
+const DesktopComponent = () => {
+  <></>;
 };
 
 export default ContactUsSection;
