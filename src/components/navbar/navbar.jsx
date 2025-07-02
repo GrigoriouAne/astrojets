@@ -40,17 +40,17 @@ export default function Navbar() {
 
       <ul className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
         <li>
-          <a href="#plans" onClick={() => setIsOpen(false)}>
-            Plans
+          <a href="#ourPackages" onClick={() => setIsOpen(false)}>
+            Our Packages
           </a>
         </li>
         <li>
-          <a href="#about" onClick={() => setIsOpen(false)}>
+          <a href="#aboutUs" onClick={() => setIsOpen(false)}>
             About
           </a>
         </li>
         <li>
-          <a href="#contact" onClick={() => setIsOpen(false)}>
+          <a href="#contactUs" onClick={() => setIsOpen(false)}>
             Contact
           </a>
         </li>
