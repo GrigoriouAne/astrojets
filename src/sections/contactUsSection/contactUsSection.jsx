@@ -1,8 +1,8 @@
 import Icon from "../../components/icon/icon";
 import Map from "../../components/map/map";
 import styles from "./contactUsSection.module.css";
-import phoneIcon from "../../assets/images/astro-boy-phone.png";
-import emailIcon from "../../assets/images/astro-boy-email.png";
+import phoneIcon from "../../assets/images/call_phone-Photoroom.png";
+import emailIcon from "../../assets/images/mail-Photoroom.png";
 import { FaTiktok, FaInstagram } from "react-icons/fa";
 
 const ContactUsSection = () => {
@@ -27,10 +27,16 @@ const ContactUsSection = () => {
 
           <h1 className={styles.socialTitle}>Social media</h1>
           <div className={styles.socialMediaContainer}>
-            <a>
+            <a
+              href="https://www.tiktok.com/@astrojets.ws?_t=ZN-8xev9BwXssU&_r=1"
+              className={styles.socialLink}
+            >
               <FaTiktok />
             </a>
-            <a>
+            <a
+              href="https://www.instagram.com/astrojets.ws?igsh=aW9zYngyeXU4cWJh"
+              className={styles.socialLink}
+            >
               <FaInstagram />
             </a>
           </div>
