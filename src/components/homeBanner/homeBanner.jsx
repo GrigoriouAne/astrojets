@@ -36,9 +36,17 @@ const HomeBanner = () => {
     <div id="home" className={styles.banner}>
       <div className={styles.videoWrapper}>
         {isMobile ? (
+          // <iframe
+          //   className={styles.video}
+          //   src="https://www.youtube-nocookie.com/embed/9pCwIcMlnCw?autoplay=1&mute=1&controls=0&loop=1&playlist=9pCwIcMlnCw&vq=hd1080"
+          //   title="Astro jets"
+          //   frameBorder="0"
+          //   allow="autoplay; encrypted-media"
+          //   allowFullScreen
+          // ></iframe>
           <video
             className={styles.video}
-            src={videoUrl}
+            src={bgVideo}
             autoPlay
             loop
             muted
