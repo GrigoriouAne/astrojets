@@ -38,7 +38,7 @@ const HomeBanner = () => {
         {isMobile ? (
           <video
             className={styles.video}
-            src={bgVideo}
+            src={videoUrl}
             autoPlay
             loop
             muted
