@@ -1,4 +1,4 @@
-import styles from "./mobileNavbar.module.css";
+import styles from "./mobileNavBar.module.css";
 import jetSkiImg from "../../assets/images/jetskiastro.png";
 import aboutUsImg from "../../assets/images/aboutusastro.png";
 import infoImg from "../../assets/images/infoastro.png";
