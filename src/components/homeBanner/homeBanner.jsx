@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./homeBanner.module.css";
 import bannerImg from "../../assets/images/astrobanner.png";
-import bgVideo from "../../assets/video/astroBoy.mp4";
+import bgVideo from "../../assets/video/astroboy.mp4";
 const HomeBanner = () => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth <= 768 : false
