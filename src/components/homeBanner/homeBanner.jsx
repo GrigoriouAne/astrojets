@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./homeBanner.module.css";
 import bannerImg from "../../assets/images/astrobanner.png";
-import bgVideo from "../../assets/video/astroboy.mp4";
 const HomeBanner = () => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth <= 768 : false
@@ -46,7 +45,7 @@ const HomeBanner = () => {
           // ></iframe>
           <video
             className={styles.video}
-            src={bgVideo}
+            src="/video/astroboy.mp4"
             autoPlay
             loop
             muted
