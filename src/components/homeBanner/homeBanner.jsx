@@ -51,7 +51,7 @@ const HomeBanner = () => {
             playsInline
             preload="auto"
           >
-            <source src="/astroboy.mp4" type="video/mp4" />
+            <source src="/astroboy.webm" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
