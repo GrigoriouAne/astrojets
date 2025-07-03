@@ -45,12 +45,15 @@ const HomeBanner = () => {
           // ></iframe>
           <video
             className={styles.video}
-            src="/astroboy.mp4"
             autoPlay
             loop
             muted
             playsInline
-          />
+            preload="auto"
+          >
+            <source src="/astroboy.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         ) : (
           <img className={styles.video} src={bannerImg} />
           // <iframe
