@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./HomeBanner.module.css";
+import styles from "./homeBanner.module.css";
 import bannerImg from "../../assets/images/astrobanner.png";
 import bgVideo from "../../assets/video/astroBoy.mp4";
 const HomeBanner = () => {
