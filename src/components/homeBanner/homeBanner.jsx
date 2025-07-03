@@ -45,7 +45,7 @@ const HomeBanner = () => {
           // ></iframe>
           <video
             className={styles.video}
-            src="/video/astroboy.mp4"
+            src="/astroboy.mp4"
             autoPlay
             loop
             muted
