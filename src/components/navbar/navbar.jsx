@@ -1,4 +1,4 @@
-import styles from "./Navbar.module.css";
+import styles from "./navbar.module.css";
 import logo from "../../assets/images/ASTRO_JETS.png";
 import waves from "../../assets/images/waves.png";
 import { useEffect, useState } from "react";
