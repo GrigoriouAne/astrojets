@@ -50,6 +50,7 @@ const HomeBanner = () => {
             muted
             playsInline
             preload="auto"
+            disablePictureInPicture
           >
             <source src="/astroboy.webm" type="video/mp4" />
             Your browser does not support the video tag.
