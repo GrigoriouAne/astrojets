@@ -27,43 +27,28 @@ const HomeBanner = () => {
       window.removeEventListener("resize", checkScreen);
     };
   }, []);
-  const videoUrl = isMobile
-    ? "https://youtube.com/shorts/9pCwIcMlnCw?feature=share"
-    : "https://www.youtube-nocookie.com/embed/HSYBZ2MC9GU?autoplay=1&mute=1&loop=1&playlist=HSYBZ2MC9GU&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1";
 
   return (
     <div id="home" className={styles.banner}>
       <div className={styles.videoWrapper}>
         {isMobile ? (
-          // <iframe
-          //   className={styles.video}
-          //   src="https://www.youtube-nocookie.com/embed/9pCwIcMlnCw?autoplay=1&mute=1&controls=0&loop=1&playlist=9pCwIcMlnCw&vq=hd1080"
-          //   title="Astro jets"
-          //   frameBorder="0"
-          //   allow="autoplay; encrypted-media"
-          //   allowFullScreen
-          // ></iframe>
-          <video
-            className={styles.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            disablePictureInPicture
-          >
-            <source src="/astroboy.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <>
+            <div className={styles.video_container}></div>
+            <video
+              className={styles.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              disablePictureInPicture
+            >
+              <source src="/astroboy.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </>
         ) : (
           <img className={styles.video} src={bannerImg} />
-          // <iframe
-          //   className={styles.video}
-          //   src={videoUrl}
-          //   allow="autoplay; fullscreen"
-          //   allowFullScreen
-          //   title="Background Video"
-          // />
         )}
       </div>
 

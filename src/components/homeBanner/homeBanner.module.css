@@ -37,6 +37,16 @@
   height: 101vh;
   object-fit: cover;
   /* transform: scale(1.2); Zoom effect */
+  z-index: -1;
+}
+
+.video_container {
+  height: 101vh;
+  width: 100vw;
+  background-image: url("/astroboy.mp4");
+  background-color: transparent;
+  position: absolute;
+  z-index: 1;
 }
 
 .title {
