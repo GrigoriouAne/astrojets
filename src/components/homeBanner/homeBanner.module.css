@@ -46,6 +46,7 @@
   background-image: url("/astroboy.mp4");
   background-color: transparent;
   position: absolute;
+  background-position: center;
   z-index: 1;
 }
 
