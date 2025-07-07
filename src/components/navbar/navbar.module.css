@@ -146,35 +146,34 @@
   position: relative;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .hamburger {
+/* Extra small devices (phones) */
+@media (max-width: 599px) {
+  .navLinks {
     display: none;
   }
+}
 
+/* Small devices (large phones, small tablets) */
+@media (min-width: 600px) and (max-width: 767px) {
   .navLinks {
-    margin: 0;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #222;
-    flex-direction: column;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease;
+    display: none;
   }
+}
 
-  .navLinks.open {
-    max-height: 300px; /* enough height to show all links */
+/* Medium devices (tablets, small laptops) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .navLinks {
+    display: none;
   }
+}
 
-  .navLinks li {
-    padding: 1rem;
-    border-top: 1px solid #444;
+/* Large devices (laptops, desktops) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navLinks a {
+    font-size: 42px;
   }
+}
 
-  .navLinks li:first-child {
-    border-top: none;
-  }
+/* Extra large devices (large desktops) */
+@media (min-width: 1200px) {
 }

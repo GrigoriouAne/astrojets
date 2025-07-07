@@ -104,12 +104,92 @@
 
 /* Large devices (laptops, desktops) */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    background-color: rgb(28 74 137);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .titleContainer {
+    width: 100%;
+  }
+  .title {
+    font-size: 68px;
+    text-shadow: 5px 5px white;
+  }
+  .subTitle {
+    font-family: "numbers";
+    color: var(--primary-color);
+    text-align: center;
+  }
+  .contentContainer {
+    display: flex;
+    gap: 100px;
+    max-width: 1000px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .leftContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .phoneContainer {
+    display: flex;
+    gap: 16px;
+  }
+
+  .phoneLinksContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .link {
+    font-size: 32px;
+    text-shadow: 5px 5px black;
+  }
+
+  .emailLink {
+    text-shadow: 5px 5px black;
+    font-size: 28px;
+  }
+
+  .emailContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .socialMediaContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 5px 5px black;
+    font-size: 48px;
+    gap: 32px;
+  }
+
+  .locationText {
+    font-family: "numbers";
+    font-size: 22px;
+    text-align: center;
+    text-shadow: 5px 5px black;
+  }
+
+  .rightContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 32px;
+  }
 }
 
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
   .container {
-    background-color: rgb(23, 18, 89);
+    background-color: rgb(28 74 137);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,6 +209,7 @@
     display: flex;
     gap: 100px;
     max-width: 1500px;
+    padding-bottom: 32px;
   }
   .leftContainer {
     display: flex;
@@ -137,11 +218,13 @@
   }
   .phoneContainer {
     display: flex;
+    gap: 16px;
   }
 
   .phoneLinksContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   .link {
@@ -156,6 +239,8 @@
 
   .emailContainer {
     display: flex;
+    gap: 16px;
+    align-items: center;
   }
 
   .socialMediaContainer {

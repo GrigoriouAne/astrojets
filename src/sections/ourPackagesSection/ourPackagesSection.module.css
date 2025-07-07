@@ -51,6 +51,19 @@
 
 /* Large devices (laptops, desktops) */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    align-items: center;
+  }
+  .title {
+    font-size: 68px;
+  }
+  .cardsContainer {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    max-width: 1500px;
+  }
 }
 
 /* Extra large devices (large desktops) */

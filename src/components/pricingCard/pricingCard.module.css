@@ -45,6 +45,17 @@
 
 /* Large devices (laptops, desktops) */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    height: 300px;
+    width: 700px;
+    border-radius: 0;
+    border: 5px solid black;
+  }
+  .minutes {
+    transform: rotate(-34deg) translate(11px, -140px);
+    padding-left: 32px;
+    font-size: 28px;
+  }
 }
 
 /* Extra large devices (large desktops) */

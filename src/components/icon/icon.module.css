@@ -30,6 +30,9 @@
 
 /* Large devices (laptops, desktops) */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .image {
+    width: 100px;
+  }
 }
 
 /* Extra large devices (large desktops) */

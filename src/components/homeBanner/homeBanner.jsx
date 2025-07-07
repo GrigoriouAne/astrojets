@@ -3,7 +3,7 @@ import styles from "./homeBanner.module.css";
 import bannerImg from "../../assets/images/astrobanner.png";
 const HomeBanner = () => {
   const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+    typeof window !== "undefined" ? window.innerWidth <= 991 : false
   );
 
   useEffect(() => {

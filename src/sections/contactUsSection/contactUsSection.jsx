@@ -102,7 +102,7 @@ const DesktopComponent = () => {
           </a>
         </div>
       </div>
-      <div className={styles.rightContaienr}>
+      <div className={styles.rightContainer}>
         <h1 className={styles.subTitle}>Location</h1>
         <p className={styles.locationText}>
           Spot us across the road from Fellachidis Bakery
