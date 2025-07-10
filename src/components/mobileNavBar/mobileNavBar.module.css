@@ -51,7 +51,7 @@
 }
 
 /* Show only on mobile */
-@media (min-width: 768px) {
+@media (min-width: 991px) {
   .container {
     display: none;
   }
