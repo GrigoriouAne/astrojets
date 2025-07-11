@@ -70,14 +70,70 @@
 
 /* Small devices (large phones, small tablets) */
 @media (min-width: 600px) and (max-width: 767px) {
+  .cardWrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100%;
+  }
   .container {
-    height: 200px;
-    width: 400px;
+    height: 230px;
+    width: 100%;
+    font-size: 32px;
+  }
+
+  .minutes {
+    transform: rotate(-34deg) translate(-6%, -372%);
+    padding-left: 63px;
+    font-size: 18px;
+  }
+  .price {
+    transform: rotate(-34deg) translate(-10%, 940%);
+    padding-left: 74%;
+
+    font-size: 18px;
+  }
+
+  .flameBadge {
+    position: absolute;
+    transform: rotate(10deg) translate(34%, -86%);
+
+    width: 50px;
   }
 }
 
 /* Medium devices (tablets, small laptops) */
 @media (min-width: 768px) and (max-width: 991px) {
+  .cardWrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100%;
+  }
+  .container {
+    height: 230px;
+    width: 100%;
+    font-size: 32px;
+  }
+
+  .minutes {
+    transform: rotate(-34deg) translate(-6%, -372%);
+    padding-left: 63px;
+    font-size: 18px;
+  }
+  .price {
+    transform: rotate(-34deg) translate(-10%, 940%);
+    padding-left: 74%;
+
+    font-size: 18px;
+  }
+
+  .flameBadge {
+    position: absolute;
+    transform: rotate(10deg) translate(34%, -86%);
+
+    width: 50px;
+  }
 }
 
 /* Large devices (laptops, desktops) */

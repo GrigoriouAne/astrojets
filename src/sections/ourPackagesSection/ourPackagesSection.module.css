@@ -37,18 +37,43 @@
 
 /* Small devices (large phones, small tablets) */
 @media (min-width: 600px) and (max-width: 767px) {
+  .container {
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .cardsContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 88vw;
+  }
+
   .title {
     font-size: 48px;
-  }
-  .cardsContainer {
-    max-width: 95vw;
+    margin-bottom: 0;
   }
 }
 
 /* Medium devices (tablets, small laptops) */
 @media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .cardsContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 65vw;
+  }
+
   .title {
     font-size: 48px;
+    margin-bottom: 0;
   }
 }
 
