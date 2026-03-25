@@ -1,0 +1,231 @@
+
+.pageLogo {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 1000;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.4s ease;
+}
+
+.hideLogo {
+  transform: translateY(-140%);
+}
+
+
+
+.page {
+  min-height: 100vh;
+  padding: 95px 20px 60px;
+  background: linear-gradient(
+    180deg,
+    #d8f3fb 0%,
+    #b5e4f2 20%,
+    #bdeaf2 42%,
+    #d7f3f8 70%,
+    #eefbff 100%
+  );
+}
+
+.heroBanner {
+  max-width: 1500px;
+  margin: 0 auto 28px;
+  border: 4px solid black;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.12),
+    0 6px 14px rgba(0, 0, 0, 0.08);
+  background: white;
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 5px 5px black;
+  margin: 0 0 12px;
+}
+
+.subtitle {
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+  margin: 0;
+}
+
+.routesGrid {
+  display: grid;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto 32px;
+}
+
+.routeCard {
+  background: rgba(255, 255, 255, 0.92);
+  border: 4px solid black;
+  border-radius: 28px;
+  padding: 28px 24px;
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.routeTitle {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 4px 4px black;
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.columns {
+  display: grid;
+  gap: 20px;
+}
+
+.column {
+  background: linear-gradient(180deg, #f8fcff 0%, #e6f4ff 100%);
+  border: 3px solid #1c4a89;
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.columnTitle {
+  font-family: "numbers";
+  color: #1c4a89;
+  font-size: 28px;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.timeList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.timeList li {
+  font-family: "numbers";
+  font-size: 24px;
+  text-align: center;
+  color: #111;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  padding: 10px 0;
+  border: 2px solid rgba(28, 74, 137, 0.15);
+}
+
+.noteBox {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid black;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.note {
+  font-family: "numbers";
+  font-size: 22px;
+  color: #1c4a89;
+  margin: 0 0 14px;
+}
+
+.sourceLink {
+  display: inline-block;
+  font-family: "numbers";
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+  background: #1c4a89;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 2px solid black;
+}
+
+@media (max-width: 767px) {
+
+  .pageLogo {
+    top: 10px;
+    left: 10px;
+  }
+
+  .heroBanner {
+    margin-bottom: 22px;
+    border-radius: 22px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .routeTitle {
+    font-size: 40px;
+  }
+
+  .columnTitle {
+    font-size: 22px;
+  }
+
+  .timeList li {
+    font-size: 22px;
+  }
+
+  .note {
+    font-size: 18px;
+  }
+
+  .sourceLink {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .title {
+    font-size: 56px;
+  }
+
+  .routeTitle {
+    font-size: 46px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .title {
+    font-size: 68px;
+  }
+
+  .routeTitle {
+    font-size: 52px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

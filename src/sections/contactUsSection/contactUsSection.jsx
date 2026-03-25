@@ -5,6 +5,7 @@ import phoneIcon from "../../assets/images/call_phone-Photoroom.png";
 import emailIcon from "../../assets/images/mail-Photoroom.png";
 import { FaTiktok, FaInstagram } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
 
 const ContactUsSection = () => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -57,6 +58,14 @@ const MobileOrTabletComponent = () => {
           Spot us across the road from Fellachidis Bakery
         </p>
         <Map />
+        <Link
+          to="/ferry-routes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.ferryBox}
+        >
+          Δρομολόγια Πλοίων
+        </Link>
       </div>
     </div>
   );
@@ -84,6 +93,14 @@ const DesktopComponent = () => {
             astrojets.ws@gmail.com
           </a>
         </div>
+        <Link
+          to="/ferry-routes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.ferryBox}
+        >
+          Δρομολόγια Πλοίων
+        </Link>
       </div>
       <div className={styles.middleContainer}>
         <h1 className={styles.subTitle}>Social media</h1>

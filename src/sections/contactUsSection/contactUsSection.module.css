@@ -92,6 +92,10 @@
     font-size: 48px;
     gap: 32px;
   }
+  .ferryBox {
+    margin: 30px 0 18px;
+    font-size: 15px;
+  }
 }
 
 /* Small devices (large phones, small tablets) */
@@ -167,6 +171,10 @@
     font-size: 48px;
     gap: 32px;
   }
+  .ferryBox {
+    margin: 30px 0 18px;
+    font-size: 15px;
+  }
 }
 
 /* Medium devices (tablets, small laptops) */
@@ -241,6 +249,10 @@
     text-shadow: 5px 5px black;
     font-size: 48px;
     gap: 32px;
+  }
+  .ferryBox {
+    margin: 30px 0 18px;
+    font-size: 15px;
   }
 }
 
@@ -400,4 +412,19 @@
     text-align: center;
     text-shadow: 5px 5px black;
   }
+}
+
+.ferryBox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "numbers";
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+  border: 3px solid black;
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  padding: 12px 18px;
+  text-align: center;
 }

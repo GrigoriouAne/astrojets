@@ -1,0 +1,274 @@
+.container {
+  position: relative;
+  margin-top: 0;
+  padding: 48px 0 48px;
+  background: linear-gradient(
+    180deg,
+    #d7e7f3 0%,
+    #dcecf6 18%,
+    #e7f3fa 45%,
+    #f2f8fc 75%,
+    #f7fbfd 100%
+  );
+  overflow: hidden;
+}
+
+
+.title {
+  position: relative;
+  z-index: 3;
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-align: center;
+  text-shadow: 5px 5px black;
+  margin: 0 0 30px;
+}
+
+.message {
+  position: relative;
+  z-index: 1;
+  font-family: "numbers";
+  text-align: center;
+  font-size: 24px;
+  color: #1c4a89;
+  padding: 24px 16px;
+}
+
+.cardsScroller {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 0 12px;
+  scrollbar-width: thin;
+}
+
+.cardsGrid {
+  display: grid;
+  gap: 20px;
+  padding: 0 20px 12px;
+}
+
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(246, 251, 255, 0.96) 100%
+  );
+  border: 4px solid black;
+  border-radius: 26px;
+  box-shadow:
+    0 12px 28px rgba(20, 58, 91, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 18px 16px 20px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+.sunnyCard {
+  background: linear-gradient(
+    180deg,
+    #fff7c7 0%,
+    #fff2a6 12%,
+    #eefbff 34%,
+    #dff4ff 68%,
+    #cdeeff 100%
+  );
+}
+
+.partlyCloudyCard {
+  background: linear-gradient(
+    180deg,
+    #f7fbfd 0%,
+    #e7f1f6 55%,
+    #dce8ef 100%
+  );
+}
+
+.cloudyCard {
+  background: linear-gradient(
+    180deg,
+    #f2f5f7 0%,
+    #e3e9ee 55%,
+    #d7e0e7 100%
+  );
+}
+
+.windyCard {
+  background: linear-gradient(
+    180deg,
+    #eef8fc 0%,
+    #d9edf7 55%,
+    #c6e2ef 100%
+  );
+}
+
+.rainyCard {
+  background: linear-gradient(
+    180deg,
+    #e6ebf0 0%,
+    #d2dae2 55%,
+    #bcc8d4 100%
+  );
+}
+
+.cardTop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.day {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 3px 3px black;
+  font-size: 30px;
+}
+
+.condition {
+  font-family: "numbers";
+  color: #1c4a89;
+  font-size: 16px;
+  background: linear-gradient(180deg, #eef7ff 0%, #dceeff 100%);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 2px solid #3b6ea8;
+  box-shadow: 0 2px 6px rgba(28, 74, 137, 0.08);
+}
+
+.imageWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 180px;
+  margin-bottom: 10px;
+}
+
+.weatherImage {
+  width: 100%;
+  max-width: 170px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.tempRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.maxTemp,
+.minTemp,
+.separator {
+  font-family: "numbers";
+  font-size: 32px;
+  color: #111;
+}
+
+.status {
+  font-family: "numbers";
+  text-align: center;
+  color: #1c4a89;
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 36px 0 36px;
+  }
+
+  .title {
+    font-size: 52px;
+  }
+
+  .cardsGrid {
+    display: flex;
+    width: max-content;
+    gap: 18px;
+    padding: 0 18px 14px;
+  }
+
+  .card {
+    width: 225px;
+    flex: 0 0 auto;
+    padding: 16px 14px 18px;
+  }
+
+  .day {
+    font-size: 26px;
+  }
+
+  .condition {
+    font-size: 15px;
+    padding: 5px 11px;
+  }
+
+  .imageWrapper {
+    min-height: 150px;
+    margin-bottom: 8px;
+  }
+
+  .weatherImage {
+    max-width: 145px;
+  }
+
+  .maxTemp,
+  .minTemp,
+  .separator {
+    font-size: 28px;
+  }
+
+  .status {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .title {
+    font-size: 56px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .title {
+    font-size: 64px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .card {
+    min-width: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .title {
+    font-size: 68px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .card {
+    min-width: 0;
+  }
+}
