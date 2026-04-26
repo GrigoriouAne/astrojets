@@ -1,24 +1,31 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./homeBanner.module.css";
 import bannerImg from "../../assets/images/astrobanner.png";
+import { isUserLoggedIn, logoutUser } from "../../utils/auth";
+
 const HomeBanner = () => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth <= 991 : false
   );
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Fix iOS 100vh issue
     const setHeight = () => {
       document.documentElement.style.setProperty(
         "--vh",
         `${window.innerHeight * 0.01}px`
       );
     };
+
     const checkScreen = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+
     setHeight();
-    setHeight();
+    checkScreen();
+    setLoggedIn(isUserLoggedIn());
+
     window.addEventListener("resize", setHeight);
     window.addEventListener("resize", checkScreen);
 
@@ -48,11 +55,35 @@ const HomeBanner = () => {
             </video>
           </>
         ) : (
-          <img className={styles.video} src={bannerImg} />
+          <img className={styles.video} src={bannerImg} alt="AstroJets banner" />
         )}
       </div>
 
-      <h1 className={styles.title}>ASTRO JETS</h1>
+      <div className={styles.heroContent}>
+        <h1 className={styles.title}>ASTRO JETS</h1>
+
+        <div className={styles.heroButtons}>
+          <Link
+            to={loggedIn ? "/sign-in" : "/sign-in"}
+            className={styles.heroButton}
+          >
+            {loggedIn ? "BOOK NOW" : "SIGN IN"}
+          </Link>
+
+          {loggedIn && (
+            <button
+              type="button"
+              className={styles.logoutButton}
+              onClick={() => {
+                logoutUser();
+                window.location.href = "/";
+              }}
+            >
+              LOG OUT
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

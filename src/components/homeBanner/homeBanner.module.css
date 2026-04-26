@@ -50,8 +50,17 @@
   z-index: 1;
 }
 
-.title {
+.heroContent {
+  position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.title {
   color: var(--primary-color);
   text-decoration: none;
   font-family: "astroboy", sans-serif;
@@ -61,33 +70,154 @@
     -1px 0 0 var(--secondary-color);
   text-align: center;
   padding: 1rem;
+  margin: 0;
+}
+
+.heroButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  padding: 14px 26px;
+  border-radius: 20px;
+  border: 3px solid black;
+  text-decoration: none;
+  font-family: "numbers";
+  font-size: 28px;
+  color: white;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.heroButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoutButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  padding: 10px 24px;
+  border-radius: 18px;
+  border: 3px solid black;
+  font-family: "numbers";
+  font-size: 22px;
+  color: white;
+  background: linear-gradient(180deg, #2b2b2b 0%, #111111 100%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
 }
 
 
 /* Extra small devices (phones) */
 @media (max-width: 599px) {
+  .heroContent {
+    gap: 14px;
+  }
+
   .title {
     font-size: 60px;
     transform: translateY(60px);
+  }
+
+  .heroButtons {
+    gap: 6px;
+    transform: translateY(45px);
+  }
+
+  .heroButton {
+    min-width: 170px;
+    font-size: 20px;
+    padding: 12px 20px;
+    transform: none;
+  }
+
+  .logoutButton {
+    min-width: 170px;
+    font-size: 17px;
+    padding: 9px 18px;
   }
 }
 
 /* Small devices (large phones, small tablets) */
 @media (min-width: 600px) and (max-width: 767px) {
+  .heroContent {
+    gap: 14px;
+  }
+
   .title {
     font-size: 60px;
     transform: translateY(60px);
+  }
+
+  .heroButtons {
+    gap: 6px;
+    transform: translateY(45px);
+  }
+
+  .heroButton {
+    min-width: 180px;
+    font-size: 22px;
+    padding: 12px 22px;
+    transform: none;
+  }
+
+  .logoutButton {
+    min-width: 180px;
+    font-size: 18px;
+    padding: 9px 18px;
   }
 }
 
 /* Medium devices (tablets, small laptops) */
 @media (min-width: 768px) and (max-width: 991px) {
+  .heroContent {
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 78px;
+  }
+
+  .heroButton {
+    min-width: 200px;
+    font-size: 24px;
+    padding: 13px 24px;
+  }
+  .heroButtons {
+    gap: 7px;
+  }
+
+  .logoutButton {
+    min-width: 200px;
+    font-size: 20px;
+    padding: 10px 20px;
+  }
 }
 
 /* Large devices (laptops, desktops) */
 @media (min-width: 992px) and (max-width: 1199px) {
+  .heroButton {
+    min-width: 210px;
+    font-size: 26px;
+  }
+  .logoutButton {
+    min-width: 210px;
+    font-size: 21px;
+  }
 }
 
 /* Extra large devices (large desktops) */
 @media (min-width: 1200px) {
+  .heroButton {
+    min-width: 220px;
+    font-size: 28px;
+  }
+  .logoutButton {
+    min-width: 220px;
+    font-size: 22px;
+  }
 }

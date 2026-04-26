@@ -5,6 +5,8 @@ import HomePage from "./pages/homePage/homePage";
 import FerryRoutesPage from "./pages/homePage/ferryRoutesPage/ferryRoutesPage";
 import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import ExploreNeaPeramosPage from "./pages/homePage/exploreNeaPeramosPage/exploreNeaPeramosPage";
+import SignInPage from "./pages/homePage/signInPage/signInPage";
+import SignUpPage from "./pages/homePage/signUpPage/signUpPage";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           path="/explore-nea-peramos"
           element={<ExploreNeaPeramosPage />}
         />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
       </Routes>
     </BrowserRouter>
   );
