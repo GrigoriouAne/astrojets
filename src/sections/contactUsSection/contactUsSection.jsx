@@ -57,15 +57,28 @@ const MobileOrTabletComponent = () => {
         <p className={styles.locationText}>
           Spot us across the road from Fellachidis Bakery
         </p>
+
+        <div className={styles.mobileButtons}>
+          <Link
+            to="/ferry-routes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.ferryBox}
+          >
+            Ferry Routes
+          </Link>
+
+          <Link
+            to="/explore-nea-peramos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.exploreBox}
+          >
+            Explore Nea Peramos
+          </Link>
+        </div>
+
         <Map />
-        <Link
-          to="/ferry-routes"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.ferryBox}
-        >
-          Δρομολόγια Πλοίων
-        </Link>
       </div>
     </div>
   );
@@ -93,14 +106,25 @@ const DesktopComponent = () => {
             astrojets.ws@gmail.com
           </a>
         </div>
+        <div className={styles.desktopButtons}>
         <Link
           to="/ferry-routes"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.ferryBox}
         >
-          Δρομολόγια Πλοίων
+          Ferry Routes
         </Link>
+
+        <Link
+          to="/explore-nea-peramos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.exploreBox}
+        >
+          Explore Nea Peramos
+        </Link>
+      </div>
       </div>
       <div className={styles.middleContainer}>
         <h1 className={styles.subTitle}>Social media</h1>

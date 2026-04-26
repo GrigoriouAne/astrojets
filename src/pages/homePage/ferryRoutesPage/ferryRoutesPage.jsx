@@ -53,19 +53,19 @@ const FerryRoutesPage = () => {
       </div>
 
       <div className={styles.header}>
-        <h1 className={styles.title}>Δρομολόγια Πλοίων</h1>
+        <h1 className={styles.title}>Ferry Routes</h1>
         <p className={styles.subtitle}>
-          Δείτε τα βασικά δρομολόγια από και προς Θάσο, Κεραμωτή και Καβάλα.
+          View the main ferry routes to and from Thassos, Keramoti and Kavala.
         </p>
       </div>
 
       <div className={styles.routesGrid}>
         <section className={styles.routeCard}>
-          <h2 className={styles.routeTitle}>Θάσος ⇄ Κεραμωτή</h2>
+          <h2 className={styles.routeTitle}>Thassos ⇄ Keramoti</h2>
 
           <div className={styles.columns}>
             <div className={styles.column}>
-              <h3 className={styles.columnTitle}>Από Θάσο / Λιμένα</h3>
+              <h3 className={styles.columnTitle}>From Thassos / Limenas</h3>
               <ul className={styles.timeList}>
                 <li>05:00</li>
                 <li>06:00</li>
@@ -91,7 +91,7 @@ const FerryRoutesPage = () => {
             </div>
 
             <div className={styles.column}>
-              <h3 className={styles.columnTitle}>Από Κεραμωτή</h3>
+              <h3 className={styles.columnTitle}>From Keramoti</h3>
               <ul className={styles.timeList}>
                 <li>05:00</li>
                 <li>06:00</li>
@@ -119,11 +119,11 @@ const FerryRoutesPage = () => {
         </section>
 
         <section className={styles.routeCard}>
-          <h2 className={styles.routeTitle}>Θάσος ⇄ Καβάλα</h2>
+          <h2 className={styles.routeTitle}>Thassos ⇄ Kavala</h2>
 
           <div className={styles.columns}>
             <div className={styles.column}>
-              <h3 className={styles.columnTitle}>Από Θάσο / Σκάλα Πρίνου</h3>
+              <h3 className={styles.columnTitle}>From Thassos / Skala Prinos</h3>
               <ul className={styles.timeList}>
                 <li>07:15</li>
                 <li>12:00</li>
@@ -132,7 +132,7 @@ const FerryRoutesPage = () => {
             </div>
 
             <div className={styles.column}>
-              <h3 className={styles.columnTitle}>Από Καβάλα</h3>
+              <h3 className={styles.columnTitle}>From Kavala</h3>
               <ul className={styles.timeList}>
                 <li>09:15</li>
                 <li>14:00</li>
@@ -145,8 +145,7 @@ const FerryRoutesPage = () => {
 
       <div className={styles.noteBox}>
         <p className={styles.note}>
-          Τα δρομολόγια ενδέχεται να αλλάξουν. Συνιστάται επιβεβαίωση πριν την
-          αναχώρηση.
+          Routes may change. We recommend confirming schedules before departure.
         </p>
 
         <a
@@ -155,7 +154,7 @@ const FerryRoutesPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Προβολή πηγής
+          View source
         </a>
       </div>
     </div>

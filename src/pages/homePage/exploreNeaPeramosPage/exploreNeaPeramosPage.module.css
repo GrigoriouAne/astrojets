@@ -1,0 +1,324 @@
+.page {
+  min-height: 100vh;
+  padding: 110px 20px 60px;
+  transition: background 0.35s ease;
+}
+
+.beachesTheme {
+  background: linear-gradient(
+    180deg,
+    #dff7ff 0%,
+    #bfeef7 28%,
+    #d8f7fb 70%,
+    #f4fdff 100%
+  );
+}
+
+.historyTheme {
+  background: linear-gradient(
+    180deg,
+    #f4eee1 0%,
+    #e8dcc7 28%,
+    #efe7d8 70%,
+    #faf7f0 100%
+  );
+}
+
+.foodTheme {
+  background: linear-gradient(
+    180deg,
+    #fff2e8 0%,
+    #f8dcc9 28%,
+    #fdebdc 70%,
+    #fff8f2 100%
+  );
+}
+
+.stayTheme {
+  background: linear-gradient(
+    180deg,
+    #eef7f8 0%,
+    #d9eef1 28%,
+    #edf7f8 70%,
+    #f9fcfd 100%
+  );
+}
+
+.pageLogo {
+  position: fixed;
+  top: 14px;
+  left: 18px;
+  z-index: 1000;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.4s ease;
+}
+
+.hideLogo {
+  transform: translateY(-140%);
+}
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.title {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 5px 5px black;
+  margin: 0 0 12px;
+  font-size: 68px;
+}
+
+.subtitle {
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+  margin: 0;
+}
+
+.tabs {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.tabButton {
+  font-family: "numbers";
+  font-size: 24px;
+  color: white;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+  border: 3px solid black;
+  border-radius: 18px;
+  padding: 12px 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+.activeTab {
+  transform: scale(1.03);
+}
+
+.contentArea {
+  max-width: 1450px;
+  margin: 0 auto;
+}
+
+.spotSection,
+.placeholderSection {
+  background: rgba(255, 255, 255, 0.9);
+  border: 4px solid black;
+  border-radius: 30px;
+  padding: 28px;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.08),
+    0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+.spotSection {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.spotTitle,
+.placeholderTitle {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 4px 4px black;
+  margin: 0;
+}
+
+.spotTitle {
+  font-size: 52px;
+}
+
+.placeholderTitle {
+  font-size: 48px;
+  text-align: center;
+}
+
+.spotText,
+.placeholderText {
+  font-family: "numbers";
+  color: #1c4a89;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.spotText {
+  font-size: 24px;
+}
+
+.placeholderText {
+  font-size: 22px;
+  text-align: center;
+}
+
+.sourceButton {
+  width: fit-content;
+  text-decoration: none;
+  font-family: "numbers";
+  color: white;
+  background: linear-gradient(180deg, #36d7d8 0%, #1597a5 100%);
+  border: 3px solid black;
+  border-radius: 18px;
+  padding: 12px 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.visualContent {
+  width: 100%;
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  gap: 14px;
+  align-items: center;
+}
+
+.imageFrame {
+  width: 100%;
+  border: 4px solid black;
+  border-radius: 24px;
+  overflow: hidden;
+  background: white;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+  display: block;
+}
+
+.arrowButton {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid black;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+  color: white;
+  font-size: 34px;
+  cursor: pointer;
+}
+
+.dots {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #a9c7d8;
+  cursor: pointer;
+}
+
+.activeDot {
+  background: #1c4a89;
+}
+.multiSpotGroup {
+  display: grid;
+  gap: 28px;
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: 90px 16px 40px;
+  }
+
+  .pageLogo {
+    top: 10px;
+    left: 10px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .tabs {
+    gap: 10px;
+  }
+
+  .tabButton {
+    font-size: 20px;
+    padding: 10px 16px;
+  }
+
+  .spotSection,
+  .placeholderSection {
+    padding: 20px;
+  }
+
+  .spotSection {
+    grid-template-columns: 1fr;
+  }
+
+  .spotTitle,
+  .placeholderTitle {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .spotText,
+  .placeholderText {
+    font-size: 19px;
+  }
+
+  .carousel {
+    grid-template-columns: 44px 1fr 44px;
+    gap: 10px;
+  }
+
+  .carouselImage {
+    height: 260px;
+  }
+
+  .arrowButton {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .title {
+    font-size: 56px;
+  }
+
+  .spotSection {
+    grid-template-columns: 1fr;
+  }
+
+  .spotTitle,
+  .placeholderTitle {
+    font-size: 46px;
+  }
+
+  .spotText,
+  .placeholderText {
+    font-size: 21px;
+  }
+}
