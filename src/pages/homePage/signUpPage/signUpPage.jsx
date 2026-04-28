@@ -21,7 +21,13 @@ const SignUpPage = () => {
       return;
     }
 
-    registerUser(email, password);
+    const result = registerUser(email, password);
+
+    if (!result.success) {
+      setError(result.message);
+      return;
+    }
+
     navigate("/sign-in");
   };
 

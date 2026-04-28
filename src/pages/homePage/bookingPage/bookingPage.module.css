@@ -1,0 +1,293 @@
+.page {
+  min-height: 100vh;
+  padding: 110px 20px 50px;
+  background: linear-gradient(
+    180deg,
+    #dff7ff 0%,
+    #c8edf6 35%,
+    #eefbff 100%
+  );
+}
+
+.pageLogo {
+  position: fixed;
+  top: 14px;
+  left: 18px;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+.card {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border: 4px solid black;
+  border-radius: 30px;
+  padding: 32px 28px;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.10),
+    0 6px 12px rgba(0, 0, 0, 0.06);
+}
+
+.title {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 5px 5px black;
+  text-align: center;
+  margin: 0 0 12px;
+  font-size: 62px;
+}
+
+.subtitle {
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 28px;
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.label {
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+}
+
+.input {
+  font-family: "numbers";
+  font-size: 22px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 3px solid #1c4a89;
+  outline: none;
+}
+
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.optionButton {
+  font-family: "numbers";
+  font-size: 20px;
+  color: #1c4a89;
+  background: white;
+  border: 3px solid #1c4a89;
+  border-radius: 18px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+.activeOption {
+  color: white;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+  border-color: black;
+}
+
+.jetConfigList {
+  display: grid;
+  gap: 16px;
+}
+
+.jetConfigCard {
+  border: 3px solid #1c4a89;
+  border-radius: 22px;
+  padding: 16px;
+  background: linear-gradient(180deg, #f8fcff 0%, #ecf8ff 100%);
+}
+
+.jetTitle {
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+  margin: 0 0 12px;
+}
+
+.slotsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.slotButton {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  font-family: "numbers";
+  font-size: 20px;
+  border-radius: 18px;
+  border: 3px solid black;
+  padding: 14px 10px;
+  cursor: pointer;
+}
+
+.slotButton small {
+  font-size: 14px;
+}
+
+.fullAvailable {
+  background: linear-gradient(180deg, #ddfff0 0%, #c8f7e7 100%);
+  color: #0f6b48;
+}
+
+.partialAvailable {
+  background: linear-gradient(180deg, #fff7d8 0%, #ffedb0 100%);
+  color: #8a6300;
+}
+
+.fullyBooked {
+  background: linear-gradient(180deg, #ececec 0%, #d9d9d9 100%);
+  color: #555;
+  cursor: not-allowed;
+}
+
+.activeSlot {
+  outline: 4px solid #ff2aa0;
+}
+
+.summaryCard {
+  border: 4px solid black;
+  border-radius: 26px;
+  padding: 22px;
+  background: linear-gradient(180deg, #f7fdff 0%, #e8f8fd 100%);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.summaryTitle {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 4px 4px black;
+  margin: 0 0 20px;
+  font-size: 42px;
+  text-align: center;
+}
+
+.summaryRow,
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: "numbers";
+  color: #1c4a89;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(28, 74, 137, 0.18);
+}
+
+.summaryRow strong,
+.totalRow strong {
+  text-align: right;
+}
+
+.totalRow {
+  font-size: 28px;
+  border-bottom: none;
+  margin-top: 8px;
+}
+
+.confirmButton {
+  width: 100%;
+  margin-top: 20px;
+  font-family: "numbers";
+  font-size: 24px;
+  color: white;
+  background: linear-gradient(180deg, #36d7d8 0%, #1597a5 100%);
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 16px 20px;
+  cursor: pointer;
+}
+
+.message,
+.noSlots {
+  font-family: "numbers";
+  font-size: 20px;
+  color: #1c4a89;
+  margin: 12px 0 0;
+}
+
+@media (max-width: 991px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .slotsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: 90px 16px 40px;
+  }
+
+  .pageLogo {
+    top: 10px;
+    left: 10px;
+  }
+
+  .title {
+    font-size: 44px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .label,
+  .input,
+  .optionButton,
+  .jetTitle,
+  .message,
+  .noSlots,
+  .summaryRow {
+    font-size: 18px;
+  }
+
+  .optionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .slotsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summaryTitle {
+    font-size: 34px;
+  }
+
+  .totalRow {
+    font-size: 24px;
+  }
+
+  .confirmButton {
+    font-size: 22px;
+  }
+}

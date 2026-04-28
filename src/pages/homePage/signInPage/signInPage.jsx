@@ -4,7 +4,7 @@ import styles from "./signInPage.module.css";
 import logo from "../../../assets/images/ASTRO_JETS.png";
 import waves from "../../../assets/images/waves.png";
 import navbarStyles from "../../../components/navbar/navbar.module.css";
-import { getRegisteredUser, loginUser } from "../../../utils/auth";
+import { findUserByEmail, loginUser } from "../../../utils/auth";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -15,19 +15,22 @@ const SignInPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const registeredUser = getRegisteredUser();
+    const registeredUser = findUserByEmail(email);
 
     if (!registeredUser) {
       setError("No account found. Please create one first.");
       return;
     }
 
-    if (
-      registeredUser.email === email &&
-      registeredUser.password === password
-    ) {
-      loginUser();
-      navigate("/");
+    if (registeredUser.password === password) {
+      loginUser(registeredUser.email);
+
+      if (registeredUser.email.toLowerCase() === "astrojets.ws@gmail.com") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+
       window.location.reload();
     } else {
       setError("Invalid email or password.");

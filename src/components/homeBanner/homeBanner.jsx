@@ -64,11 +64,17 @@ const HomeBanner = () => {
 
         <div className={styles.heroButtons}>
           <Link
-            to={loggedIn ? "/sign-in" : "/sign-in"}
+            to={loggedIn ? "/booking" : "/sign-in"}
             className={styles.heroButton}
           >
             {loggedIn ? "BOOK NOW" : "SIGN IN"}
           </Link>
+
+          {loggedIn && (
+            <Link to="/my-bookings" className={styles.myBookingsButton}>
+              MY BOOKINGS
+            </Link>
+          )}
 
           {loggedIn && (
             <button

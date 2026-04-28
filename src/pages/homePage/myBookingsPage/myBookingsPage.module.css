@@ -1,0 +1,207 @@
+.page {
+  min-height: 100vh;
+  padding: 110px 20px 50px;
+  background: linear-gradient(
+    180deg,
+    #dff7ff 0%,
+    #c8edf6 35%,
+    #eefbff 100%
+  );
+}
+
+.pageLogo {
+  position: fixed;
+  top: 14px;
+  left: 18px;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+.card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border: 4px solid black;
+  border-radius: 30px;
+  padding: 32px 28px;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.10),
+    0 6px 12px rgba(0, 0, 0, 0.06);
+}
+
+.title {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 5px 5px black;
+  text-align: center;
+  margin: 0 0 12px;
+  font-size: 62px;
+}
+
+.subtitle {
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 30px 0;
+}
+
+.emptyText {
+  font-family: "numbers";
+  font-size: 22px;
+  color: #1c4a89;
+  text-align: center;
+  margin: 0;
+}
+
+.bookNowButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  padding: 14px 26px;
+  border-radius: 20px;
+  border: 3px solid black;
+  text-decoration: none;
+  font-family: "numbers";
+  font-size: 24px;
+  color: white;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.bookingsList {
+  display: grid;
+  gap: 22px;
+}
+
+.bookingCard {
+  background: linear-gradient(180deg, #f8fcff 0%, #ecf8ff 100%);
+  border: 3px solid #1c4a89;
+  border-radius: 24px;
+  padding: 22px;
+}
+
+.bookingTitle {
+  font-family: "numbers";
+  color: var(--primary-color);
+  margin: 0 0 18px;
+  font-size: 34px;
+  text-align: center;
+}
+
+.bookingRow,
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: "numbers";
+  color: #1c4a89;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(28, 74, 137, 0.18);
+}
+
+.totalRow {
+  font-size: 24px;
+  border-bottom: none;
+  margin-top: 8px;
+}
+
+.statusBadge {
+  display: inline-block;
+  font-family: "numbers";
+  font-size: 18px;
+  color: white;
+  border: 2px solid black;
+  border-radius: 999px;
+  padding: 8px 16px;
+}
+
+.confirmedBadge {
+  background: linear-gradient(180deg, #36d7d8 0%, #1597a5 100%);
+}
+
+.pendingBadge {
+  background: linear-gradient(180deg, #ffcf5a 0%, #f0a400 100%);
+}
+
+.cancelledBadge {
+  background: linear-gradient(180deg, #6c6c6c 0%, #3c3c3c 100%);
+}
+.cancelRequestButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  padding: 12px 20px;
+  border-radius: 18px;
+  border: 3px solid black;
+  font-family: "numbers";
+  font-size: 20px;
+  color: white;
+  background: linear-gradient(180deg, #ff5f6d 0%, #d72638 100%);
+  cursor: pointer;
+}
+
+.infoText {
+  font-family: "numbers";
+  font-size: 18px;
+  color: #1c4a89;
+  margin-top: 14px;
+}
+.bookingActionsRow {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: 90px 16px 40px;
+  }
+
+  .pageLogo {
+    top: 10px;
+    left: 10px;
+  }
+
+  .title {
+    font-size: 44px;
+  }
+
+  .subtitle,
+  .emptyText,
+  .bookingRow,
+  .totalRow {
+    font-size: 18px;
+  }
+
+  .bookingTitle {
+    font-size: 34px;
+  }
+
+  .bookNowButton {
+    min-width: 180px;
+    font-size: 20px;
+    padding: 12px 20px;
+  }
+  .bookingActionsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cancelRequestButton {
+    width: 100%;
+    min-width: 0;
+  }
+}

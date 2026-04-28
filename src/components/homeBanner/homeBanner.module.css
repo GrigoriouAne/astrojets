@@ -88,6 +88,22 @@
   background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+.myBookingsButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 190px;
+  padding: 10px 22px;
+  border-radius: 18px;
+  border: 3px solid black;
+  text-decoration: none;
+  font-family: "numbers";
+  font-size: 20px;
+  color: white;
+  background: linear-gradient(180deg, #3b4d63 0%, #1f2b38 100%);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+}
 .heroButtons {
   display: flex;
   flex-direction: column;
@@ -140,6 +156,11 @@
     font-size: 17px;
     padding: 9px 18px;
   }
+  .myBookingsButton {
+    min-width: 170px;
+    font-size: 16px;
+    padding: 8px 18px;
+  }
 }
 
 /* Small devices (large phones, small tablets) */
@@ -170,6 +191,11 @@
     font-size: 18px;
     padding: 9px 18px;
   }
+  .myBookingsButton {
+    min-width: 180px;
+    font-size: 17px;
+    padding: 8px 18px;
+  }
 }
 
 /* Medium devices (tablets, small laptops) */
@@ -196,6 +222,11 @@
     font-size: 20px;
     padding: 10px 20px;
   }
+  .myBookingsButton {
+    min-width: 190px;
+    font-size: 18px;
+    padding: 9px 20px;
+  }
 }
 
 /* Large devices (laptops, desktops) */
@@ -208,6 +239,9 @@
     min-width: 210px;
     font-size: 21px;
   }
+  .myBookingsButton {
+    min-width: 200px;
+  }
 }
 
 /* Extra large devices (large desktops) */
@@ -219,5 +253,8 @@
   .logoutButton {
     min-width: 220px;
     font-size: 22px;
+  }
+  .myBookingsButton {
+    min-width: 200px;
   }
 }
