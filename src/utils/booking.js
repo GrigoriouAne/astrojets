@@ -164,3 +164,40 @@ export const updateBookingStatus = (bookingId, newStatus) => {
 export const getAllBookings = () => {
   return getBookings();
 };
+
+export const addBlockedSlot = ({ date, time, blockedJetSkis, fullDay = false }) => {
+  const blockedSlots = getBlockedSlots();
+
+  const newBlockedSlot = {
+    id: Date.now().toString(),
+    date,
+    time,
+    blockedJetSkis,
+    fullDay,
+    createdAt: new Date().toISOString(),
+  };
+
+  blockedSlots.push(newBlockedSlot);
+  saveBlockedSlots(blockedSlots);
+
+  return newBlockedSlot;
+};
+
+export const removeBlockedSlot = (blockedSlotId) => {
+  const blockedSlots = getBlockedSlots();
+  const updatedBlockedSlots = blockedSlots.filter((slot) => slot.id !== blockedSlotId);
+  saveBlockedSlots(updatedBlockedSlots);
+};
+
+export const getAllBlockedSlots = () => {
+  return getBlockedSlots();
+};
+export const getBookingsCountByDate = (date) => {
+  const bookings = getBookings();
+
+  return bookings.filter(
+    (booking) =>
+      booking.date === date &&
+      (booking.status === "active" || booking.status === "cancel_pending")
+  ).length;
+};

@@ -62,6 +62,14 @@
   text-align: center;
 }
 
+.sectionTitleCount {
+  font-family: "numbers";
+}
+
+.calendarSummaryDate {
+  font-family: "numbers";
+}
+
 .emptyText {
   font-family: "numbers";
   font-size: 22px;
@@ -182,7 +190,275 @@
   background: linear-gradient(180deg, #ff5f6d 0%, #d72638 100%);
 }
 
+.blockForm {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.blockTopControls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.blockField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.blockLabel {
+  font-family: "numbers";
+  font-size: 20px;
+  color: #1c4a89;
+}
+
+.blockInput {
+  font-family: "numbers";
+  font-size: 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 3px solid #1c4a89;
+  outline: none;
+}
+
+.adminSlotsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.adminSlotButton {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  font-family: "numbers";
+  font-size: 20px;
+  border-radius: 18px;
+  border: 3px solid black;
+  padding: 14px 10px;
+  cursor: pointer;
+}
+
+.adminSlotButton small {
+  font-size: 14px;
+}
+
+.activeAdminSlot {
+  outline: 4px solid #ff2aa0;
+}
+
+.fullAvailable {
+  background: linear-gradient(180deg, #ddfff0 0%, #c8f7e7 100%);
+  color: #0f6b48;
+}
+
+.partialAvailable {
+  background: linear-gradient(180deg, #fff7d8 0%, #ffedb0 100%);
+  color: #8a6300;
+}
+
+.fullyBooked {
+  background: linear-gradient(180deg, #ececec 0%, #d9d9d9 100%);
+  color: #555;
+  cursor: not-allowed;
+}
+
+.blockSubmitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 180px;
+  padding: 12px 18px;
+  border-radius: 18px;
+  border: 3px solid black;
+  font-family: "numbers";
+  font-size: 18px;
+  color: white;
+  background: linear-gradient(180deg, #36d7d8 0%, #1597a5 100%);
+  cursor: pointer;
+}
+
+.blockSubmitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.blockedList {
+  display: grid;
+  gap: 14px;
+}
+
+.blockedCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(180deg, #f8fcff 0%, #ecf8ff 100%);
+  border: 3px solid #1c4a89;
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.blockedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "numbers";
+  color: #1c4a89;
+}
+
+.unblockButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  border: 3px solid black;
+  font-family: "numbers";
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(180deg, #ff5f6d 0%, #d72638 100%);
+  cursor: pointer;
+}
+
+.calendarSection {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 28px;
+  align-items: start;
+  justify-content: center;
+}
+
+.calendarWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.adminCalendar {
+  width: 100%;
+  max-width: 420px;
+  border: 3px solid #1c4a89 !important;
+  border-radius: 24px;
+  padding: 16px;
+  font-family: "numbers" !important;
+  background: white;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.calendarBookingBadge {
+  margin: 4px auto 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #ff2aa0;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "numbers";
+  border: 2px solid black;
+}
+
+.calendarSummary {
+  border: 3px solid #1c4a89;
+  border-radius: 22px;
+  padding: 24px;
+  background: linear-gradient(180deg, #f8fcff 0%, #ecf8ff 100%);
+  min-height: 220px;
+}
+
+.calendarSummaryTitle {
+  font-family: "astroboy";
+  font-size: 48px;
+  color: var(--primary-color);
+  text-shadow: 4px 4px black;
+  margin: 0 0 22px;
+  text-align: center;
+}
+
+.calendarSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(28, 74, 137, 0.18);
+}
+
+.adminCalendar :global(.react-calendar__navigation) {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.adminCalendar :global(.react-calendar__navigation button) {
+  color: #1c4a89 !important;
+  font-family: "numbers" !important;
+  font-size: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  min-width: 44px;
+}
+
+.adminCalendar :global(.react-calendar__navigation button:disabled) {
+  opacity: 0.4;
+}
+
+.adminCalendar :global(.react-calendar__month-view__weekdays) {
+  text-align: center;
+  font-family: "numbers";
+  color: #1c4a89;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.adminCalendar :global(.react-calendar__month-view__weekdays__weekday abbr) {
+  text-decoration: none;
+}
+
+.adminCalendar :global(.react-calendar__tile) {
+  position: relative;
+  min-height: 58px;
+  border-radius: 14px;
+  font-family: "numbers";
+  color: #1c4a89;
+  background: transparent;
+  border: none;
+}
+
+.adminCalendar :global(.react-calendar__tile--now) {
+  background: rgba(255, 207, 90, 0.35) !important;
+}
+
+.adminCalendar :global(.react-calendar__tile--active) {
+  background: #39c6d6 !important;
+  color: white !important;
+}
+
+.adminCalendar :global(.react-calendar__tile:hover) {
+  background: rgba(57, 198, 214, 0.15) !important;
+}
+
+.adminCalendar
+  :global(.react-calendar__month-view__days__day--neighboringMonth) {
+  opacity: 0.35;
+}
 @media (max-width: 767px) {
+  .adminSlotsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .blockTopControls {
+    grid-template-columns: 1fr;
+  }
   .page {
     padding: 90px 16px 40px;
   }
@@ -230,5 +506,39 @@
   .directCancelButton {
     width: 100%;
     min-width: 0;
+  }
+
+  .blockFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .blockSubmitButton {
+    width: 100%;
+  }
+
+  .blockedCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .unblockButton {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .calendarSection {
+    grid-template-columns: 1fr;
+  }
+
+  .adminCalendar {
+    max-width: 100%;
+  }
+
+  .calendarSummaryTitle {
+    font-size: 34px;
+  }
+
+  .calendarSummaryRow {
+    font-size: 18px;
   }
 }
