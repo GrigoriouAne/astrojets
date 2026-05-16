@@ -67,6 +67,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 14px;
     transform: translateY(-150px);
   }
   .locationText {
@@ -106,6 +107,23 @@
   .ferryBox,
   .exploreBox {
     font-size: 24px;
+  }
+
+  .contactForm {
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .formInput,
+  .formTextarea {
+    font-size: 18px;
+    padding: 12px 14px;
+  }
+
+  .formButton {
+    width: 100%;
+    font-size: 20px;
+    padding: 12px 18px;
   }
 }
 
@@ -157,6 +175,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 14px;
     transform: translateY(-250px);
   }
   .locationText {
@@ -196,6 +215,23 @@
   .ferryBox,
   .exploreBox {
     font-size: 24px;
+  }
+
+  .contactForm {
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .formInput,
+  .formTextarea {
+    font-size: 18px;
+    padding: 12px 14px;
+  }
+
+  .formButton {
+    width: 100%;
+    font-size: 20px;
+    padding: 12px 18px;
   }
 }
 
@@ -247,6 +283,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 14px;
     transform: translateY(-550px);
   }
   .locationText {
@@ -286,6 +323,15 @@
   .ferryBox,
   .exploreBox {
     font-size: 24px;
+  }
+
+  .contactForm {
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .formButton {
+    width: 100%;
   }
 }
 
@@ -503,4 +549,80 @@
 .desktopButtons,
 .mobileButtons {
   display: flex;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  font-family: "numbers";
+  font-size: 20px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 3px solid black;
+  outline: none;
+  background: rgba(255, 255, 255, 0.96);
+  color: #1c4a89;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: #4c6d96;
+}
+
+.formTextarea {
+  resize: none;
+  min-height: 130px;
+}
+
+.formButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "numbers";
+  font-size: 22px;
+  color: white;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+  border: 3px solid black;
+  border-radius: 18px;
+  padding: 14px 20px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.middleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formStatusBox {
+  width: 100%;
+  font-family: "numbers";
+  font-size: 18px;
+  text-align: center;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 3px solid black;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  margin-top: 4px;
+}
+
+.successBox {
+  color: white;
+  background: linear-gradient(180deg, #36d7d8 0%, #1597a5 100%);
+}
+
+.errorBox {
+  color: white;
+  background: linear-gradient(180deg, #ff5f6d 0%, #d72638 100%);
 }
