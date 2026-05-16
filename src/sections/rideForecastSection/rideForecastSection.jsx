@@ -7,14 +7,18 @@ import windyToby from "../../assets/images/weather/windy-toby.png";
 import rainyToby from "../../assets/images/weather/rainy-toby.png";
 
 const WEATHER_API_URL =
-  "https://api.open-meteo.com/v1/forecast?latitude=40.8389&longitude=24.3032&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,precipitation_sum&timezone=auto&forecast_days=5";
+  "https://api.open-meteo.com/v1/forecast?latitude=40.8389&longitude=24.3032&current_weather=true&hourly=weather_code,temperature_2m,wind_speed_10m,precipitation&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5";
 
 const getWeatherGroup = (weatherCode, windSpeed, precipitation) => {
-  if (precipitation > 0 || [51, 53, 55, 61, 63, 65, 80, 81, 82, 95, 96, 99].includes(weatherCode)) {
+  const rainyCodes = [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99];
+  const cloudyCodes = [3, 45, 48];
+  const partlyCloudyCodes = [1, 2];
+
+  if (rainyCodes.includes(weatherCode) || precipitation >= 1.5) {
     return "rainy";
   }
 
-  if (windSpeed >= 30) {
+  if (windSpeed >= 35 && !rainyCodes.includes(weatherCode)) {
     return "windy";
   }
 
@@ -22,11 +26,33 @@ const getWeatherGroup = (weatherCode, windSpeed, precipitation) => {
     return "sunny";
   }
 
-  if ([1, 2].includes(weatherCode)) {
+  if (partlyCloudyCodes.includes(weatherCode)) {
     return "partly-cloudy";
   }
 
+  if (cloudyCodes.includes(weatherCode)) {
+    return "cloudy";
+  }
+
   return "cloudy";
+};
+
+const getMiddayHourlyData = (hourly, dateString) => {
+  const targetHours = [`${dateString}T12:00`, `${dateString}T13:00`, `${dateString}T14:00`];
+
+  for (const target of targetHours) {
+    const index = hourly.time.indexOf(target);
+    if (index !== -1) {
+      return {
+        weatherCode: hourly.weather_code[index],
+        temperature: hourly.temperature_2m[index],
+        windSpeed: hourly.wind_speed_10m[index],
+        precipitation: hourly.precipitation[index],
+      };
+    }
+  }
+
+  return null;
 };
 
 const weatherVisualMap = {
@@ -88,12 +114,27 @@ const RideForecastSection = () => {
         const data = await response.json();
 
         const daily = data.daily;
+        const hourly = data.hourly;
+        const currentWeather = data.current_weather;
+
         const forecastData = daily.time.map((date, index) => {
-          const weatherCode = daily.weather_code[index];
+          const isToday = index === 0;
+          const middayData = getMiddayHourlyData(hourly, date);
+
+          const weatherCode = isToday
+            ? currentWeather.weathercode
+            : middayData?.weatherCode ?? 3;
+
           const maxTemp = Math.round(daily.temperature_2m_max[index]);
           const minTemp = Math.round(daily.temperature_2m_min[index]);
-          const windSpeed = Math.round(daily.wind_speed_10m_max[index]);
-          const precipitation = daily.precipitation_sum[index];
+
+          const windSpeed = isToday
+            ? Math.round(currentWeather.windspeed)
+            : Math.round(middayData?.windSpeed ?? 0);
+
+          const precipitation = isToday
+            ? 0
+            : middayData?.precipitation ?? 0;
 
           const group = getWeatherGroup(weatherCode, windSpeed, precipitation);
           const visual = weatherVisualMap[group];
