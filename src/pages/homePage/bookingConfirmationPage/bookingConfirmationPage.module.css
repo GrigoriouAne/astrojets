@@ -1,0 +1,149 @@
+.page {
+  min-height: 100vh;
+  padding: 110px 20px 50px;
+  background: linear-gradient(
+    180deg,
+    #dff7ff 0%,
+    #c8edf6 35%,
+    #eefbff 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.pageLogo {
+  position: fixed;
+  top: 14px;
+  left: 18px;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+.card {
+  width: 100%;
+  max-width: 850px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 4px solid black;
+  border-radius: 32px;
+  padding: 34px 28px;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.10),
+    0 6px 12px rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: "astroboy";
+  font-size: 64px;
+  color: var(--primary-color);
+  text-shadow: 5px 5px black;
+  margin: 0 0 12px;
+}
+
+.subtitle {
+  font-family: "numbers";
+  font-size: 24px;
+  color: #1c4a89;
+  margin: 0;
+}
+
+.confirmBadge {
+  width: fit-content;
+  margin: 0 auto 26px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 3px solid black;
+  font-family: "numbers";
+  font-size: 20px;
+  color: white;
+  background: linear-gradient(180deg, #36d7d8 0%, #1597a5 100%);
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: "numbers";
+  color: #1c4a89;
+  font-size: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(28, 74, 137, 0.18);
+}
+
+.noteBox {
+  margin-top: 24px;
+  padding: 18px 20px;
+  background: linear-gradient(180deg, #f7fbff 0%, #ecf8ff 100%);
+  border: 3px solid #1c4a89;
+  border-radius: 20px;
+  font-family: "numbers";
+  font-size: 21px;
+  color: #1c4a89;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  padding: 14px 22px;
+  border-radius: 18px;
+  border: 3px solid black;
+  font-family: "numbers";
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+}
+
+.primaryButton {
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+}
+
+.secondaryButton {
+  background: linear-gradient(180deg, #36d7d8 0%, #1597a5 100%);
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: 90px 16px 40px;
+  }
+
+  .title {
+    font-size: 46px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .infoRow {
+    font-size: 18px;
+    gap: 10px;
+  }
+
+  .noteBox {
+    font-size: 17px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    min-width: 0;
+    font-size: 18px;
+  }
+}

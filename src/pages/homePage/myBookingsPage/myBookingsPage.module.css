@@ -165,6 +165,26 @@
   gap: 16px;
 }
 
+.sectionBlock {
+  margin-top: 28px;
+}
+
+.sectionTitle {
+  font-family: "astroboy";
+  color: var(--primary-color);
+  text-shadow: 4px 4px black;
+  font-size: 42px;
+  margin: 0 0 18px;
+  text-align: center;
+}
+
+.sectionEmptyText {
+  font-family: "numbers";
+  font-size: 22px;
+  color: #1c4a89;
+  text-align: center;
+  margin: 0 0 8px;
+}
 @media (max-width: 767px) {
   .page {
     padding: 90px 16px 40px;
@@ -203,5 +223,13 @@
   .cancelRequestButton {
     width: 100%;
     min-width: 0;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+  }
+
+  .sectionEmptyText {
+    font-size: 18px;
   }
 }

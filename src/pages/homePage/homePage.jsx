@@ -5,6 +5,7 @@ import RideForecastSection from "../../sections/rideForecastSection/rideForecast
 import OurPackagesSection from "../../sections/ourPackagesSection/ourPackagesSection";
 import AboutUsSection from "../../sections/aboutUsSection/aboutUsSection";
 import ContactUsSection from "../../sections/contactUsSection/contactUsSection";
+import FaqSection from "../../sections/faqSection/faqSection";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
         <OurPackagesSection />
         <AboutUsSection />
         <ContactUsSection />
+        <FaqSection />
       </div>
     </>
   );

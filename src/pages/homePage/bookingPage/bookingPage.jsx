@@ -9,6 +9,7 @@ import {
   calculateJetPrice,
   calculateTotalPrice,
   createBooking,
+  getCompletedBookingsCountForUser,
   getSlotsWithAvailability,
 } from "../../../utils/booking";
 
@@ -47,6 +48,19 @@ const BookingPage = () => {
 
   const totalPrice = calculateTotalPrice(selectedDuration, ridersPerJet);
 
+  const currentUser = getRegisteredUser();
+
+  const completedBookingsCount = currentUser
+    ? getCompletedBookingsCountForUser(currentUser.email)
+    : 0;
+
+  const hasReturningCustomerDiscount = completedBookingsCount >= 3;
+  const discountAmount = hasReturningCustomerDiscount
+    ? Math.round(totalPrice * 0.1)
+    : 0;
+
+  const finalTotalPrice = totalPrice - discountAmount;
+
   const handleRiderChange = (index, riders) => {
     const updated = [...ridersPerJet];
     updated[index] = riders;
@@ -75,17 +89,22 @@ const BookingPage = () => {
       return;
     }
 
-    createBooking({
+    const newBooking = createBooking({
       userEmail: user.email,
       duration: selectedDuration,
       date: selectedDate,
       time: selectedTime,
       ridersPerJet,
+      discountAmount,
+      totalPrice: finalTotalPrice,
     });
 
-    setMessage("Your booking has been created successfully.");
     setSelectedTime("");
     setRefreshKey((prev) => prev + 1);
+
+    navigate("/booking-confirmation", {
+      state: { booking: newBooking },
+    });
   };
 
   return (
@@ -271,8 +290,26 @@ const BookingPage = () => {
                 </div>
 
                 <div className={styles.totalRow}>
-                  <span>Total</span>
+                  <span>Subtotal</span>
                   <strong>€{totalPrice}</strong>
+                </div>
+
+                {hasReturningCustomerDiscount && (
+                  <>
+                    <div className={styles.discountBadge}>
+                      Returning customer discount applied -10%
+                    </div>
+
+                    <div className={styles.summaryRow}>
+                      <span>Discount</span>
+                      <strong>-€{discountAmount}</strong>
+                    </div>
+                  </>
+                )}
+
+                <div className={styles.totalRow}>
+                  <span>Total</span>
+                  <strong>€{finalTotalPrice}</strong>
                 </div>
 
                 {message && <p className={styles.message}>{message}</p>}

@@ -14,6 +14,8 @@ const MyBookingsPage = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
 
+  const today = new Date().toISOString().split("T")[0];
+
   const loadBookings = () => {
     const user = getRegisteredUser();
 
@@ -54,6 +56,14 @@ const MyBookingsPage = () => {
     return styles.confirmedBadge;
   };
 
+  const upcomingBookings = bookings.filter(
+    (booking) => booking.status !== "cancelled" && booking.date >= today
+  );
+
+  const pastBookings = bookings.filter(
+    (booking) => booking.status !== "cancelled" && booking.date < today
+  );
+
   const handleCancellationRequest = (bookingId) => {
     requestBookingCancellation(bookingId);
     loadBookings();
@@ -72,7 +82,7 @@ const MyBookingsPage = () => {
           Here you can see all your reservation details.
         </p>
 
-        {bookings.length === 0 ? (
+        {upcomingBookings.length === 0 && pastBookings.length === 0 ? (
           <div className={styles.emptyState}>
             <p className={styles.emptyText}>
               No bookings yet. Your reservations will appear here.
@@ -83,80 +93,156 @@ const MyBookingsPage = () => {
             </Link>
           </div>
         ) : (
-          <div className={styles.bookingsList}>
-            {bookings.map((booking) => (
-              <div key={booking.id} className={styles.bookingCard}>
-                <h2 className={styles.bookingTitle}>
-                  {getBookingTitle(booking.duration)}
-                </h2>
+          <>
+            <div className={styles.sectionBlock}>
+              <h2 className={styles.sectionTitle}>Upcoming Bookings</h2>
 
-                <div className={styles.bookingRow}>
-                  <span>Date</span>
-                  <strong>{booking.date}</strong>
+              {upcomingBookings.length === 0 ? (
+                <p className={styles.sectionEmptyText}>
+                  You have no upcoming bookings.
+                </p>
+              ) : (
+                <div className={styles.bookingsList}>
+                  {upcomingBookings.map((booking) => (
+                    <div key={booking.id} className={styles.bookingCard}>
+                      <h2 className={styles.bookingTitle}>
+                        {getBookingTitle(booking.duration)}
+                      </h2>
+
+                      <div className={styles.bookingRow}>
+                        <span>Date</span>
+                        <strong>{booking.date}</strong>
+                      </div>
+
+                      <div className={styles.bookingRow}>
+                        <span>Time</span>
+                        <strong>{booking.time}</strong>
+                      </div>
+
+                      <div className={styles.bookingRow}>
+                        <span>Jet Skis</span>
+                        <strong>{booking.jetSkiCount}</strong>
+                      </div>
+
+                      {booking.ridersPerJet?.map((riders, index) => (
+                        <div key={index} className={styles.bookingRow}>
+                          <span>Jet Ski {index + 1}</span>
+                          <strong>
+                            {riders} {riders === 1 ? "rider" : "riders"}
+                          </strong>
+                        </div>
+                      ))}
+
+                      <div className={styles.totalRow}>
+                        <span>Total Price</span>
+                        <strong>€{booking.totalPrice}</strong>
+                      </div>
+
+                      <div className={styles.bookingActionsRow}>
+                        <div
+                          className={`${styles.statusBadge} ${getStatusClass(
+                            booking.status
+                          )}`}
+                        >
+                          {getStatusLabel(booking.status)}
+                        </div>
+
+                        {booking.status === "active" && (
+                          <button
+                            type="button"
+                            className={styles.cancelRequestButton}
+                            onClick={() => {
+                              const confirmed = window.confirm(
+                                "Are you sure you want to request cancellation for this booking?"
+                              );
+
+                              if (confirmed) {
+                                handleCancellationRequest(booking.id);
+                              }
+                            }}
+                          >
+                            Request Cancellation
+                          </button>
+                        )}
+                      </div>
+
+                      {booking.status === "cancel_pending" && (
+                        <p className={styles.infoText}>
+                          Your cancellation request is waiting for admin approval.
+                        </p>
+                      )}
+                    </div>
+                  ))}
                 </div>
+              )}
+            </div>
 
-                <div className={styles.bookingRow}>
-                  <span>Time</span>
-                  <strong>{booking.time}</strong>
+            <div className={styles.sectionBlock}>
+              <h2 className={styles.sectionTitle}>Past Bookings</h2>
+
+              {pastBookings.length === 0 ? (
+                <p className={styles.sectionEmptyText}>
+                  You have no past bookings yet.
+                </p>
+              ) : (
+                <div className={styles.bookingsList}>
+                  {pastBookings.map((booking) => (
+                    <div key={booking.id} className={styles.bookingCard}>
+                      <h2 className={styles.bookingTitle}>
+                        {getBookingTitle(booking.duration)}
+                      </h2>
+
+                      <div className={styles.bookingRow}>
+                        <span>Date</span>
+                        <strong>{booking.date}</strong>
+                      </div>
+
+                      <div className={styles.bookingRow}>
+                        <span>Time</span>
+                        <strong>{booking.time}</strong>
+                      </div>
+
+                      <div className={styles.bookingRow}>
+                        <span>Jet Skis</span>
+                        <strong>{booking.jetSkiCount}</strong>
+                      </div>
+
+                      {booking.ridersPerJet?.map((riders, index) => (
+                        <div key={index} className={styles.bookingRow}>
+                          <span>Jet Ski {index + 1}</span>
+                          <strong>
+                            {riders} {riders === 1 ? "rider" : "riders"}
+                          </strong>
+                        </div>
+                      ))}
+
+                      <div className={styles.totalRow}>
+                        <span>Total Price</span>
+                        <strong>€{booking.totalPrice}</strong>
+                      </div>
+
+                      <div className={styles.bookingActionsRow}>
+                        <div
+                          className={`${styles.statusBadge} ${getStatusClass(
+                            booking.status
+                          )}`}
+                        >
+                          {getStatusLabel(booking.status)}
+                        </div>
+                      </div>
+
+                      {booking.status === "cancel_pending" && (
+                        <p className={styles.infoText}>
+                          Your cancellation request was submitted before this booking date passed
+                          and is still waiting for admin approval.
+                        </p>
+                      )}
+                    </div>
+                  ))}
                 </div>
-
-                <div className={styles.bookingRow}>
-                  <span>Jet Skis</span>
-                  <strong>{booking.jetSkiCount}</strong>
-                </div>
-
-                {booking.ridersPerJet?.map((riders, index) => (
-                  <div key={index} className={styles.bookingRow}>
-                    <span>Jet Ski {index + 1}</span>
-                    <strong>
-                      {riders} {riders === 1 ? "rider" : "riders"}
-                    </strong>
-                  </div>
-                ))}
-
-                <div className={styles.totalRow}>
-                  <span>Total Price</span>
-                  <strong>€{booking.totalPrice}</strong>
-                </div>
-
-                <div className={styles.bookingActionsRow}>
-                  <div className={`${styles.statusBadge} ${getStatusClass(booking.status)}`}>
-                    {getStatusLabel(booking.status)}
-                  </div>
-
-                  {booking.status === "active" && (
-                    <button
-                      type="button"
-                      className={styles.cancelRequestButton}
-                      onClick={() => {
-                        const confirmed = window.confirm(
-                          "Are you sure you want to request cancellation for this booking?"
-                        );
-
-                        if (confirmed) {
-                          handleCancellationRequest(booking.id);
-                        }
-                      }}
-                    >
-                      Request Cancellation
-                    </button>
-                  )}
-                </div>
-
-                {booking.status === "cancel_pending" && (
-                  <p className={styles.infoText}>
-                    Your cancellation request is waiting for admin approval.
-                  </p>
-                )}
-
-                {booking.status === "cancelled" && (
-                  <p className={styles.infoText}>
-                    This booking has been cancelled.
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>

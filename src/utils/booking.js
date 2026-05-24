@@ -111,9 +111,11 @@ export const createBooking = ({
   date,
   time,
   ridersPerJet,
+  discountAmount = 0,
+  totalPrice,
 }) => {
   const jetSkiCount = ridersPerJet.length;
-  const totalPrice = calculateTotalPrice(duration, ridersPerJet);
+  const calculatedTotalPrice = calculateTotalPrice(duration, ridersPerJet);
 
   const bookings = getBookings();
 
@@ -125,7 +127,9 @@ export const createBooking = ({
     time,
     ridersPerJet,
     jetSkiCount,
-    totalPrice,
+    subtotalPrice: calculatedTotalPrice,
+    discountAmount,
+    totalPrice: totalPrice ?? calculatedTotalPrice,
     status: "active",
     createdAt: new Date().toISOString(),
   };
@@ -137,7 +141,10 @@ export const createBooking = ({
 };
 export const getBookingsForUser = (userEmail) => {
   const bookings = getBookings();
-  return bookings.filter((booking) => booking.userEmail === userEmail);
+  return bookings.filter(
+    (booking) =>
+      booking.userEmail === userEmail && booking.status !== "cancelled"
+  );
 };
 
 export const requestBookingCancellation = (bookingId) => {
@@ -200,4 +207,17 @@ export const getBookingsCountByDate = (date) => {
       booking.date === date &&
       (booking.status === "active" || booking.status === "cancel_pending")
   ).length;
+};
+export const getCompletedBookingsCountForUser = (userEmail) => {
+  const bookings = getBookings();
+  const today = new Date().toISOString().split("T")[0];
+
+  return bookings
+    .filter(
+      (booking) =>
+        booking.userEmail === userEmail &&
+        booking.status === "active" &&
+        booking.date < today
+    )
+    .reduce((sum, booking) => sum + (booking.jetSkiCount || 1), 0);
 };

@@ -233,6 +233,19 @@
   margin: 12px 0 0;
 }
 
+.discountBadge {
+  margin-top: 14px;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 3px solid black;
+  font-family: "numbers";
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(180deg, #ff2aa0 0%, #e51b7d 100%);
+}
+
 @media (max-width: 991px) {
   .mainGrid {
     grid-template-columns: 1fr;
