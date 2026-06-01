@@ -1,58 +1,95 @@
-export const isUserLoggedIn = () => {
-  return localStorage.getItem("astrojets_logged_in") === "true";
+import { supabase } from "./supabase";
+
+const ADMIN_EMAIL = "astrojets.ws@gmail.com";
+
+export const isAdminEmail = (email) => {
+  return email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
 };
 
-export const loginUser = (email) => {
-  localStorage.setItem("astrojets_logged_in", "true");
-  localStorage.setItem("astrojets_current_user_email", email);
+export const isUserLoggedIn = async () => {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  return !!session;
 };
 
-export const logoutUser = () => {
-  localStorage.removeItem("astrojets_logged_in");
-  localStorage.removeItem("astrojets_current_user_email");
-};
+export const loginUser = async (email, password) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-export const getAllUsers = () => {
-  const users = localStorage.getItem("astrojets_users");
-  return users ? JSON.parse(users) : [];
-};
-
-export const saveAllUsers = (users) => {
-  localStorage.setItem("astrojets_users", JSON.stringify(users));
-};
-
-export const registerUser = (email, password) => {
-  const users = getAllUsers();
-
-  const exists = users.some(
-    (user) => user.email.toLowerCase() === email.toLowerCase()
-  );
-
-  if (exists) {
-    return { success: false, message: "An account with this email already exists." };
+  if (error) {
+    return { success: false, message: error.message };
   }
 
-  const newUser = { email, password };
-  const updatedUsers = [...users, newUser];
-  saveAllUsers(updatedUsers);
+  return { success: true, user: data.user };
+};
+
+export const logoutUser = async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    return { success: false, message: error.message };
+  }
 
   return { success: true };
 };
 
-export const getRegisteredUser = () => {
-  const currentEmail = localStorage.getItem("astrojets_current_user_email");
-  if (!currentEmail) return null;
+export const registerUser = async (email, password) => {
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
 
-  const users = getAllUsers();
-  return (
-    users.find((user) => user.email.toLowerCase() === currentEmail.toLowerCase()) ||
-    null
-  );
+    if (error) {
+      return { success: false, message: error.message };
+    }
+
+    return { success: true, user: data.user };
+  } catch (err) {
+    return { success: false, message: err.message || "Failed to fetch" };
+  }
 };
 
-export const findUserByEmail = (email) => {
-  const users = getAllUsers();
-  return (
-    users.find((user) => user.email.toLowerCase() === email.toLowerCase()) || null
-  );
+export const getRegisteredUser = async () => {
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error || !user) return null;
+
+  return {
+    id: user.id,
+    email: user.email,
+    role: isAdminEmail(user.email) ? "admin" : "customer",
+  };
+};
+
+export const getCurrentSession = async () => {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  return session;
+};
+
+export const findUserByEmail = async (email) => {
+  const user = await getRegisteredUser();
+
+  if (!user) return null;
+
+  return user.email?.toLowerCase() === email.toLowerCase() ? user : null;
+};
+
+export const getAllUsers = async () => {
+  const user = await getRegisteredUser();
+  return user ? [user] : [];
+};
+
+export const saveAllUsers = async () => {
+  return;
 };

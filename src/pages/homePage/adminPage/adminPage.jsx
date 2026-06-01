@@ -9,7 +9,6 @@ import {
   addBlockedSlot,
   getAllBlockedSlots,
   getAllBookings,
-  getBookingsCountByDate,
   getSlotsWithAvailability,
   removeBlockedSlot,
   updateBookingStatus,
@@ -30,79 +29,89 @@ const AdminPage = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [selectedCalendarDate, setSelectedCalendarDate] = useState(new Date());
 
-  const loadBookings = () => {
-    const storedBookings = getAllBookings();
+  const loadBookings = async () => {
+    const storedBookings = await getAllBookings();
     const sortedBookings = [...storedBookings].sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
     setBookings(sortedBookings);
 
-    const storedBlockedSlots = getAllBlockedSlots();
+    const storedBlockedSlots = await getAllBlockedSlots();
     const sortedBlockedSlots = [...storedBlockedSlots].sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
     setBlockedSlots(sortedBlockedSlots);
 
     if (blockDate) {
-      loadAdminSlots(blockDate);
+      await loadAdminSlots(blockDate);
     }
   };
 
-  const loadAdminSlots = (date) => {
+  const loadAdminSlots = async (date) => {
     if (!date) {
       setAdminSlots([]);
       return;
     }
 
-    const slots = getSlotsWithAvailability(date);
+    const slots = await getSlotsWithAvailability(date);
     setAdminSlots(slots);
   };
 
   useEffect(() => {
-    if (!isUserLoggedIn()) {
-      navigate("/sign-in");
-      return;
-    }
+    const checkAdminAccess = async () => {
+      const loggedIn = await isUserLoggedIn();
 
-    const currentUser = getRegisteredUser();
+      if (!loggedIn) {
+        navigate("/sign-in");
+        return;
+      }
 
-    if (!currentUser || currentUser.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+      const currentUser = await getRegisteredUser();
+
+      if (!currentUser || currentUser.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
         navigate("/");
         return;
-    }
+      }
 
-    loadBookings();
+      await loadBookings();
+    };
+
+    checkAdminAccess();
   }, [navigate]);
 
   useEffect(() => {
-    loadAdminSlots(blockDate);
+    const loadSlotsForAdmin = async () => {
+      await loadAdminSlots(blockDate);
+    };
+
+    loadSlotsForAdmin();
   }, [blockDate, refreshKey]);
 
-  const handleApproveCancellation = (bookingId) => {
-    updateBookingStatus(bookingId, "cancelled");
-    loadBookings();
+  const handleApproveCancellation = async (bookingId) => {
+    await updateBookingStatus(bookingId, "cancelled");
+    await loadBookings();
     setRefreshKey((prev) => prev + 1);
   };
 
-  const handleRejectCancellation = (bookingId) => {
-    updateBookingStatus(bookingId, "active");
-    loadBookings();
+  const handleRejectCancellation = async (bookingId) => {
+    await updateBookingStatus(bookingId, "active");
+    await loadBookings();
     setRefreshKey((prev) => prev + 1);
   };
 
-  const handleDirectCancellation = (bookingId) => {
+  const handleDirectCancellation = async (bookingId) => {
     const confirmed = window.confirm(
       "Are you sure you want to cancel this booking?"
     );
 
     if (!confirmed) return;
 
-    updateBookingStatus(bookingId, "cancelled");
-    loadBookings();
+    await updateBookingStatus(bookingId, "cancelled");
+    await loadBookings();
     setRefreshKey((prev) => prev + 1);
   };
 
-  const handleAddBlockedSlot = (e) => {
+  const handleAddBlockedSlot = async (e) => {
     e.preventDefault();
 
     if (!blockDate || !selectedBlockSlot) return;
@@ -114,7 +123,7 @@ const AdminPage = () => {
     if (!selectedSlotData) return;
     if (selectedSlotData.availableJetSkis < blockJetSkis) return;
 
-    addBlockedSlot({
+    await addBlockedSlot({
       date: blockDate,
       time: selectedBlockSlot,
       blockedJetSkis: Number(blockJetSkis),
@@ -123,13 +132,13 @@ const AdminPage = () => {
 
     setSelectedBlockSlot("");
     setBlockJetSkis(1);
-    loadBookings();
+    await loadBookings();
     setRefreshKey((prev) => prev + 1);
   };
 
-  const handleRemoveBlockedSlot = (blockedSlotId) => {
-    removeBlockedSlot(blockedSlotId);
-    loadBookings();
+  const handleRemoveBlockedSlot = async (blockedSlotId) => {
+    await removeBlockedSlot(blockedSlotId);
+    await loadBookings();
     setRefreshKey((prev) => prev + 1);
   };
 
@@ -158,9 +167,13 @@ const AdminPage = () => {
 
   const selectedDateString = formatDateToYYYYMMDD(selectedCalendarDate);
 
-  const bookingsForSelectedDate = bookings.filter(
-    (booking) => booking.date === selectedDateString
-  );
+  const bookingsForSelectedDate = bookings
+    .filter((booking) => booking.date === selectedDateString)
+    .sort((a, b) => {
+      if (a.status === "cancelled" && b.status !== "cancelled") return 1;
+      if (a.status !== "cancelled" && b.status === "cancelled") return -1;
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
 
 
   const blockedSlotsForSelectedDate = blockedSlots.filter(
@@ -204,7 +217,11 @@ const AdminPage = () => {
                   if (view !== "month") return null;
 
                   const formattedDate = formatDateToYYYYMMDD(date);
-                  const count = getBookingsCountByDate(formattedDate);
+                  const count = bookings.filter(
+                    (booking) =>
+                      booking.date === formattedDate &&
+                      (booking.status === "active" || booking.status === "cancel_pending")
+                  ).length;
 
                   if (count === 0) return null;
 
@@ -262,7 +279,7 @@ const AdminPage = () => {
                         <button
                           type="button"
                           className={styles.directCancelButton}
-                          onClick={() => handleDirectCancellation(booking.id)}
+                          onClick={async () => await handleDirectCancellation(booking.id)}
                         >
                           Cancel Booking
                         </button>
@@ -375,7 +392,7 @@ const AdminPage = () => {
                     <button
                       type="button"
                       className={styles.approveButton}
-                      onClick={() => handleApproveCancellation(booking.id)}
+                      onClick={async () => await handleApproveCancellation(booking.id)}
                     >
                       Approve Cancellation
                     </button>
@@ -383,7 +400,7 @@ const AdminPage = () => {
                     <button
                       type="button"
                       className={styles.rejectButton}
-                      onClick={() => handleRejectCancellation(booking.id)}
+                      onClick={async () => await handleRejectCancellation(booking.id)}
                     >
                       Reject Request
                     </button>
@@ -490,7 +507,7 @@ const AdminPage = () => {
                   <button
                     type="button"
                     className={styles.unblockButton}
-                    onClick={() => handleRemoveBlockedSlot(slot.id)}
+                    onClick={async () => await handleRemoveBlockedSlot(slot.id)}
                   >
                     Remove Block
                   </button>

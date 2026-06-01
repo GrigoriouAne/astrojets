@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./bookingPage.module.css";
 import logo from "../../../assets/images/ASTRO_JETS.png";
@@ -25,11 +25,20 @@ const BookingPage = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [message, setMessage] = useState("");
   const [refreshKey, setRefreshKey] = useState(0);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [completedBookingsCount, setCompletedBookingsCount] = useState(0);
+  const [slots, setSlots] = useState([]);
 
   useEffect(() => {
-    if (!isUserLoggedIn()) {
-      navigate("/sign-in");
-    }
+    const checkAuth = async () => {
+      const loggedIn = await isUserLoggedIn();
+
+      if (!loggedIn) {
+        navigate("/sign-in");
+      }
+    };
+
+    checkAuth();
   }, [navigate]);
 
   useEffect(() => {
@@ -41,18 +50,38 @@ const BookingPage = () => {
     setSelectedTime("");
   }, [jetSkiCount]);
 
-  const slots = useMemo(() => {
-    if (!selectedDate) return [];
-    return getSlotsWithAvailability(selectedDate);
+  useEffect(() => {
+    const loadUserData = async () => {
+      const user = await getRegisteredUser();
+
+      if (!user) return;
+
+      setCurrentUser(user);
+
+      const count = await getCompletedBookingsCountForUser(user.email);
+      setCompletedBookingsCount(count);
+    };
+
+    loadUserData();
+  }, []);
+
+  useEffect(() => {
+    const loadSlots = async () => {
+      if (!selectedDate) {
+        setSlots([]);
+        return;
+      }
+
+      const availableSlots = await getSlotsWithAvailability(selectedDate);
+      setSlots(availableSlots);
+    };
+
+    loadSlots();
   }, [selectedDate, refreshKey]);
 
+  
+
   const totalPrice = calculateTotalPrice(selectedDuration, ridersPerJet);
-
-  const currentUser = getRegisteredUser();
-
-  const completedBookingsCount = currentUser
-    ? getCompletedBookingsCountForUser(currentUser.email)
-    : 0;
 
   const hasReturningCustomerDiscount = completedBookingsCount >= 3;
   const discountAmount = hasReturningCustomerDiscount
@@ -67,10 +96,10 @@ const BookingPage = () => {
     setRidersPerJet(updated);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = getRegisteredUser();
+    const user = await getRegisteredUser();
 
     if (!user) {
       setMessage("No signed-in user found.");
@@ -89,7 +118,8 @@ const BookingPage = () => {
       return;
     }
 
-    const newBooking = createBooking({
+    const newBooking = await createBooking({
+      userId: user.id,
       userEmail: user.email,
       duration: selectedDuration,
       date: selectedDate,
@@ -98,6 +128,11 @@ const BookingPage = () => {
       discountAmount,
       totalPrice: finalTotalPrice,
     });
+
+    if (!newBooking) {
+      setMessage("Failed to create booking. Please try again.");
+      return;
+    }
 
     setSelectedTime("");
     setRefreshKey((prev) => prev + 1);

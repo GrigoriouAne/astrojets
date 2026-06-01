@@ -4,37 +4,33 @@ import styles from "./signInPage.module.css";
 import logo from "../../../assets/images/ASTRO_JETS.png";
 import waves from "../../../assets/images/waves.png";
 import navbarStyles from "../../../components/navbar/navbar.module.css";
-import { findUserByEmail, loginUser } from "../../../utils/auth";
+import { isAdminEmail, loginUser } from "../../../utils/auth";
 
 const SignInPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    const registeredUser = findUserByEmail(email);
+    const result = await loginUser(email, password);
 
-    if (!registeredUser) {
-      setError("No account found. Please create one first.");
+    if (!result.success) {
+      setError(result.message || "Invalid email or password.");
       return;
     }
 
-    if (registeredUser.password === password) {
-      loginUser(registeredUser.email);
-
-      if (registeredUser.email.toLowerCase() === "astrojets.ws@gmail.com") {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
-
-      window.location.reload();
+    if (isAdminEmail(email)) {
+      navigate("/admin");
     } else {
-      setError("Invalid email or password.");
+      navigate("/");
     }
+
+    window.location.reload();
   };
 
   return (
@@ -57,14 +53,23 @@ const SignInPage = () => {
             required
           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className={styles.passwordWrapper}>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className={styles.input}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className={styles.eyeButton}
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? "🙈" : "👁"}
+            </button>
+          </div>
 
           {error && <p className={styles.error}>{error}</p>}
 

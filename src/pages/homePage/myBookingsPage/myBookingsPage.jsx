@@ -8,6 +8,7 @@ import { getRegisteredUser, isUserLoggedIn } from "../../../utils/auth";
 import {
   getBookingsForUser,
   requestBookingCancellation,
+  updateBookingStatus,
 } from "../../../utils/booking";
 
 const MyBookingsPage = () => {
@@ -16,25 +17,31 @@ const MyBookingsPage = () => {
 
   const today = new Date().toISOString().split("T")[0];
 
-  const loadBookings = () => {
-    const user = getRegisteredUser();
+  const loadBookings = async () => {
+    const user = await getRegisteredUser();
 
     if (!user) {
       navigate("/sign-in");
       return;
     }
 
-    const userBookings = getBookingsForUser(user.email);
+    const userBookings = await getBookingsForUser(user.email);
     setBookings(userBookings);
   };
 
   useEffect(() => {
-    if (!isUserLoggedIn()) {
-      navigate("/sign-in");
-      return;
-    }
+    const checkAuthAndLoadBookings = async () => {
+      const loggedIn = await isUserLoggedIn();
 
-    loadBookings();
+      if (!loggedIn) {
+        navigate("/sign-in");
+        return;
+      }
+
+      await loadBookings();
+    };
+
+    checkAuthAndLoadBookings();
   }, [navigate]);
 
   const getBookingTitle = (duration) => {
@@ -64,9 +71,14 @@ const MyBookingsPage = () => {
     (booking) => booking.status !== "cancelled" && booking.date < today
   );
 
-  const handleCancellationRequest = (bookingId) => {
-    requestBookingCancellation(bookingId);
-    loadBookings();
+  const handleCancellationRequest = async (bookingId) => {
+    await requestBookingCancellation(bookingId);
+    await loadBookings();
+  };
+
+  const handleUndoCancellationRequest = async (bookingId) => {
+    await updateBookingStatus(bookingId, "active");
+    await loadBookings();
   };
 
   return (
@@ -151,17 +163,35 @@ const MyBookingsPage = () => {
                           <button
                             type="button"
                             className={styles.cancelRequestButton}
-                            onClick={() => {
+                            onClick={async () => {
                               const confirmed = window.confirm(
                                 "Are you sure you want to request cancellation for this booking?"
                               );
 
                               if (confirmed) {
-                                handleCancellationRequest(booking.id);
+                                await handleCancellationRequest(booking.id);
                               }
                             }}
                           >
                             Request Cancellation
+                          </button>
+                        )}
+
+                        {booking.status === "cancel_pending" && (
+                          <button
+                            type="button"
+                            className={styles.cancelRequestButton}
+                            onClick={async () => {
+                              const confirmed = window.confirm(
+                                "Do you want to cancel your cancellation request and keep this booking active?"
+                              );
+
+                              if (confirmed) {
+                                await handleUndoCancellationRequest(booking.id);
+                              }
+                            }}
+                          >
+                            Undo Cancellation Request
                           </button>
                         )}
                       </div>
@@ -229,6 +259,24 @@ const MyBookingsPage = () => {
                         >
                           {getStatusLabel(booking.status)}
                         </div>
+
+                        {booking.status === "cancel_pending" && (
+                          <button
+                            type="button"
+                            className={styles.cancelRequestButton}
+                            onClick={async () => {
+                              const confirmed = window.confirm(
+                                "Do you want to cancel your cancellation request and keep this booking active?"
+                              );
+
+                              if (confirmed) {
+                                await handleUndoCancellationRequest(booking.id);
+                              }
+                            }}
+                          >
+                            Undo Cancellation Request
+                          </button>
+                        )}
                       </div>
 
                       {booking.status === "cancel_pending" && (

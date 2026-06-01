@@ -1,3 +1,5 @@
+import { supabase } from "./supabase";
+
 export const BOOKING_SLOTS = [
   "09:00",
   "09:30",
@@ -32,23 +34,30 @@ export const PRICING = {
   },
 };
 
-export const getBookings = () => {
-  const bookings = localStorage.getItem("astrojets_bookings");
-  return bookings ? JSON.parse(bookings) : [];
-};
+const mapBookingRow = (row) => ({
+  id: String(row.id),
+  userId: row.user_id,
+  userEmail: row.user_email,
+  duration: row.duration,
+  date: row.date,
+  time: row.time,
+  ridersPerJet: row.riders_per_jet || [],
+  jetSkiCount: row.jet_ski_count,
+  subtotalPrice: row.subtotal_price,
+  discountAmount: row.discount_amount,
+  totalPrice: row.total_price,
+  status: row.status,
+  createdAt: row.created_at,
+});
 
-export const saveBookings = (bookings) => {
-  localStorage.setItem("astrojets_bookings", JSON.stringify(bookings));
-};
-
-export const getBlockedSlots = () => {
-  const blocked = localStorage.getItem("astrojets_blocked_slots");
-  return blocked ? JSON.parse(blocked) : [];
-};
-
-export const saveBlockedSlots = (blockedSlots) => {
-  localStorage.setItem("astrojets_blocked_slots", JSON.stringify(blockedSlots));
-};
+const mapBlockedSlotRow = (row) => ({
+  id: String(row.id),
+  date: row.date,
+  time: row.time,
+  blockedJetSkis: row.blocked_jet_skis,
+  fullDay: row.full_day,
+  createdAt: row.created_at,
+});
 
 export const calculateJetPrice = (duration, riders) => {
   return PRICING[duration]?.[riders] || 0;
@@ -61,13 +70,41 @@ export const calculateTotalPrice = (duration, ridersPerJet) => {
   );
 };
 
-export const getUsedJetSkisForSlot = (date, time) => {
-  const bookings = getBookings();
-  const blockedSlots = getBlockedSlots();
+export const getBookings = async () => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error fetching bookings:", error);
+    return [];
+  }
+
+  return (data || []).map(mapBookingRow);
+};
+
+export const getBlockedSlots = async () => {
+  const { data, error } = await supabase
+    .from("blocked_slots")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error fetching blocked slots:", error);
+    return [];
+  }
+
+  return (data || []).map(mapBlockedSlotRow);
+};
+
+export const getUsedJetSkisForSlot = async (date, time) => {
+  const bookings = await getBookings();
+  const blockedSlots = await getBlockedSlots();
 
   const bookedCount = bookings
     .filter(
-        (booking) =>
+      (booking) =>
         booking.date === date &&
         booking.time === time &&
         (booking.status === "active" || booking.status === "cancel_pending")
@@ -85,27 +122,32 @@ export const getUsedJetSkisForSlot = (date, time) => {
   return Math.min(2, bookedCount + blockedCount);
 };
 
-export const getAvailableJetSkisForSlot = (date, time) => {
-  return Math.max(0, 2 - getUsedJetSkisForSlot(date, time));
+export const getAvailableJetSkisForSlot = async (date, time) => {
+  return Math.max(0, 2 - (await getUsedJetSkisForSlot(date, time)));
 };
 
-export const getSlotStatus = (date, time) => {
-  const availableJetSkis = getAvailableJetSkisForSlot(date, time);
+export const getSlotStatus = async (date, time) => {
+  const availableJetSkis = await getAvailableJetSkisForSlot(date, time);
 
   if (availableJetSkis === 2) return "full-available";
   if (availableJetSkis === 1) return "partial-available";
   return "fully-booked";
 };
 
-export const getSlotsWithAvailability = (date) => {
-  return BOOKING_SLOTS.map((slot) => ({
-    time: slot,
-    availableJetSkis: getAvailableJetSkisForSlot(date, slot),
-    status: getSlotStatus(date, slot),
-  }));
+export const getSlotsWithAvailability = async (date) => {
+  const results = await Promise.all(
+    BOOKING_SLOTS.map(async (slot) => ({
+      time: slot,
+      availableJetSkis: await getAvailableJetSkisForSlot(date, slot),
+      status: await getSlotStatus(date, slot),
+    }))
+  );
+
+  return results;
 };
 
-export const createBooking = ({
+export const createBooking = async ({
+  userId,
   userEmail,
   duration,
   date,
@@ -117,90 +159,124 @@ export const createBooking = ({
   const jetSkiCount = ridersPerJet.length;
   const calculatedTotalPrice = calculateTotalPrice(duration, ridersPerJet);
 
-  const bookings = getBookings();
-
-  const newBooking = {
-    id: Date.now().toString(),
-    userEmail,
+  const payload = {
+    user_id: userId,
+    user_email: userEmail,
     duration,
     date,
     time,
-    ridersPerJet,
-    jetSkiCount,
-    subtotalPrice: calculatedTotalPrice,
-    discountAmount,
-    totalPrice: totalPrice ?? calculatedTotalPrice,
+    riders_per_jet: ridersPerJet,
+    jet_ski_count: jetSkiCount,
+    subtotal_price: calculatedTotalPrice,
+    discount_amount: discountAmount,
+    total_price: totalPrice ?? calculatedTotalPrice,
     status: "active",
-    createdAt: new Date().toISOString(),
   };
 
-  bookings.push(newBooking);
-  saveBookings(bookings);
+  const { data, error } = await supabase
+    .from("bookings")
+    .insert([payload])
+    .select()
+    .single();
 
-  return newBooking;
-};
-export const getBookingsForUser = (userEmail) => {
-  const bookings = getBookings();
-  return bookings.filter(
-    (booking) =>
-      booking.userEmail === userEmail && booking.status !== "cancelled"
-  );
-};
+  if (error) {
+    console.error("Error creating booking:", error);
+    return null;
+  }
 
-export const requestBookingCancellation = (bookingId) => {
-  const bookings = getBookings();
-
-  const updatedBookings = bookings.map((booking) =>
-    booking.id === bookingId
-      ? { ...booking, status: "cancel_pending" }
-      : booking
-  );
-
-  saveBookings(updatedBookings);
+  return mapBookingRow(data);
 };
 
-export const updateBookingStatus = (bookingId, newStatus) => {
-  const bookings = getBookings();
+export const getBookingsForUser = async (userEmail) => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*")
+    .eq("user_email", userEmail)
+    .neq("status", "cancelled")
+    .order("created_at", { ascending: false });
 
-  const updatedBookings = bookings.map((booking) =>
-    booking.id === bookingId ? { ...booking, status: newStatus } : booking
-  );
+  if (error) {
+    console.error("Error fetching user bookings:", error);
+    return [];
+  }
 
-  saveBookings(updatedBookings);
+  return (data || []).map(mapBookingRow);
 };
-export const getAllBookings = () => {
-  return getBookings();
+
+export const requestBookingCancellation = async (bookingId) => {
+  const { data, error } = await supabase
+    .from("bookings")
+    .update({ status: "cancel_pending" })
+    .eq("id", Number(bookingId))
+    .select();
+
+  if (error) {
+    console.error("Error requesting cancellation:", error);
+    return { success: false, error };
+  }
+
+  return { success: true, data };
 };
 
-export const addBlockedSlot = ({ date, time, blockedJetSkis, fullDay = false }) => {
-  const blockedSlots = getBlockedSlots();
+export const updateBookingStatus = async (bookingId, newStatus) => {
+  const { error } = await supabase
+    .from("bookings")
+    .update({ status: newStatus })
+    .eq("id", Number(bookingId));
 
-  const newBlockedSlot = {
-    id: Date.now().toString(),
+  if (error) {
+    console.error("Error updating booking status:", error);
+  }
+};
+
+export const getAllBookings = async () => {
+  return await getBookings();
+};
+
+export const addBlockedSlot = async ({
+  date,
+  time,
+  blockedJetSkis,
+  fullDay = false,
+}) => {
+  const payload = {
     date,
     time,
-    blockedJetSkis,
-    fullDay,
-    createdAt: new Date().toISOString(),
+    blocked_jet_skis: blockedJetSkis,
+    full_day: fullDay,
   };
 
-  blockedSlots.push(newBlockedSlot);
-  saveBlockedSlots(blockedSlots);
+  const { data, error } = await supabase
+    .from("blocked_slots")
+    .insert([payload])
+    .select()
+    .single();
 
-  return newBlockedSlot;
+  if (error) {
+    console.error("Error adding blocked slot:", error);
+    return null;
+  }
+
+  return mapBlockedSlotRow(data);
 };
 
-export const removeBlockedSlot = (blockedSlotId) => {
-  const blockedSlots = getBlockedSlots();
-  const updatedBlockedSlots = blockedSlots.filter((slot) => slot.id !== blockedSlotId);
-  saveBlockedSlots(updatedBlockedSlots);
+export const removeBlockedSlot = async (blockedSlotId) => {
+  const { error } = await supabase
+    .from("blocked_slots")
+    .delete()
+    .eq("id", Number(blockedSlotId));
+
+  if (error) {
+    console.error("Error removing blocked slot:", error);
+  }
 };
 
-export const getAllBlockedSlots = () => {
-  return getBlockedSlots();
+export const getAllBlockedSlots = async () => {
+  return await getBlockedSlots();
 };
-export const getBookingsCountByDate = (date) => {
-  const bookings = getBookings();
+
+export const getBookingsCountByDate = async (date) => {
+  const bookings = await getBookings();
 
   return bookings.filter(
     (booking) =>
@@ -208,8 +284,9 @@ export const getBookingsCountByDate = (date) => {
       (booking.status === "active" || booking.status === "cancel_pending")
   ).length;
 };
-export const getCompletedBookingsCountForUser = (userEmail) => {
-  const bookings = getBookings();
+
+export const getCompletedBookingsCountForUser = async (userEmail) => {
+  const bookings = await getBookings();
   const today = new Date().toISOString().split("T")[0];
 
   return bookings

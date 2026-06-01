@@ -22,9 +22,14 @@ const HomeBanner = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
+    const checkLoginStatus = async () => {
+      const loggedInStatus = await isUserLoggedIn();
+      setLoggedIn(loggedInStatus);
+    };
+
     setHeight();
     checkScreen();
-    setLoggedIn(isUserLoggedIn());
+    checkLoginStatus();
 
     window.addEventListener("resize", setHeight);
     window.addEventListener("resize", checkScreen);
@@ -80,8 +85,8 @@ const HomeBanner = () => {
             <button
               type="button"
               className={styles.logoutButton}
-              onClick={() => {
-                logoutUser();
+              onClick={async () => {
+                await logoutUser();
                 window.location.href = "/";
               }}
             >
