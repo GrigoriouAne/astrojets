@@ -12,12 +12,14 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccessMessage("");
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
@@ -29,11 +31,14 @@ const SignUpPage = () => {
     console.log("SIGN UP RESULT:", result);
 
     if (!result.success) {
-      setError(result.message || "Sign up failed.");
+      setError(result.message);
       return;
     }
 
-    navigate("/sign-in");
+    setSuccessMessage("Account created successfully. Please check your email to verify your account.");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   return (
@@ -93,6 +98,8 @@ const SignUpPage = () => {
           </div>
 
           {error && <p className={styles.error}>{error}</p>}
+
+          {successMessage && <p className={styles.success}>{successMessage}</p>}
 
           <button type="submit" className={styles.button}>
             Sign Up
