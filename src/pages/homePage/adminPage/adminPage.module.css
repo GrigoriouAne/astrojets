@@ -9,15 +9,42 @@
   );
 }
 
-.pageLogo {
-  position: fixed;
-  top: 14px;
-  left: 18px;
-  z-index: 1000;
+.pageLogoButton {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.waveActive {
+  animation: adminWave 0.65s ease-in-out 3;
+  transform-origin: left center;
+}
+
+@keyframes adminWave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(7deg);
+  }
+  50% {
+    transform: rotate(-7deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
 }
 
 .pageContent {
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
@@ -44,6 +71,8 @@
 }
 
 .sectionCard {
+  width: 100%;
+  box-sizing: border-box;
   background: rgba(255, 255, 255, 0.95);
   border: 4px solid black;
   border-radius: 30px;
@@ -456,20 +485,28 @@
   .adminSlotsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .blockTopControls {
     grid-template-columns: 1fr;
   }
+
   .page {
-    padding: 90px 16px 40px;
+    padding: 88px 12px 32px;
+    overflow-x: hidden;
   }
 
-  .pageLogo {
-    top: 10px;
-    left: 10px;
+  .pageContent {
+    gap: 20px;
+  }
+
+  .header {
+    padding: 0 4px;
   }
 
   .title {
-    font-size: 44px;
+    font-size: 40px;
+    line-height: 0.95;
+    text-align: center;
   }
 
   .subtitle,
@@ -478,13 +515,33 @@
     font-size: 18px;
   }
 
+  .subtitle {
+    text-align: center;
+  }
+
   .sectionTitle {
-    font-size: 34px;
+    font-size: 32px;
+  }
+
+  .sectionCard {
+    padding: 20px 14px;
+    border-radius: 24px;
+  }
+
+  .bookingCard {
+    padding: 16px;
   }
 
   .bookingTop {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .bookingTopRight {
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .actionButtons {
@@ -495,12 +552,6 @@
   .rejectButton {
     width: 100%;
     min-width: 0;
-  }
-    .bookingTopRight {
-    width: 100%;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: stretch;
   }
 
   .directCancelButton {
@@ -528,10 +579,24 @@
 
   .calendarSection {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .calendarWrapper {
+    width: 100%;
   }
 
   .adminCalendar {
+    width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .calendarSummary {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 14px;
+    min-height: auto;
   }
 
   .calendarSummaryTitle {
@@ -540,5 +605,66 @@
 
   .calendarSummaryRow {
     font-size: 18px;
+  }
+}
+
+.topBar {
+  position: fixed;
+  top: 14px;
+  left: 18px;
+  right: 18px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.scrolled {
+  opacity: 1;
+}
+
+.hide {
+  transform: translateY(-140%);
+  opacity: 0;
+}
+
+.adminLogoutButton {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  border: 3px solid #000;
+  background: linear-gradient(180deg, #ff4fa3 0%, #f01987 100%);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 0 #000;
+  transition: transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.adminLogoutButton:hover {
+  transform: translateY(-2px);
+}
+
+.adminLogoutButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    top: 10px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .adminLogoutButton {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
   }
 }

@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./adminPage.module.css";
 import logo from "../../../assets/images/ASTRO_JETS.png";
 import waves from "../../../assets/images/waves.png";
 import navbarStyles from "../../../components/navbar/navbar.module.css";
-import { getRegisteredUser, isUserLoggedIn } from "../../../utils/auth";
+import {
+  getRegisteredUser,
+  isUserLoggedIn,
+  logoutUser,
+} from "../../../utils/auth";
 import {
   addBlockedSlot,
   getAllBlockedSlots,
@@ -28,6 +32,31 @@ const AdminPage = () => {
   const [adminSlots, setAdminSlots] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const [selectedCalendarDate, setSelectedCalendarDate] = useState(new Date());
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [waveAnimating, setWaveAnimating] = useState(false);
+  const waveTimeoutRef = useRef(null);
+  const handleAdminLogout = async () => {
+    await logoutUser();
+    navigate("/sign-in");
+  };
+
+  const handleAdminHomeClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (window.innerWidth <= 767) {
+      setWaveAnimating(true);
+
+      if (waveTimeoutRef.current) {
+        clearTimeout(waveTimeoutRef.current);
+      }
+
+      waveTimeoutRef.current = setTimeout(() => {
+        setWaveAnimating(false);
+      }, 2000);
+    }
+  };
 
   const loadBookings = async () => {
     const storedBookings = await getAllBookings();
@@ -80,12 +109,39 @@ const AdminPage = () => {
   }, [navigate]);
 
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      setScrolled(currentScrollY > 50);
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  useEffect(() => {
     const loadSlotsForAdmin = async () => {
       await loadAdminSlots(blockDate);
     };
 
     loadSlotsForAdmin();
   }, [blockDate, refreshKey]);
+
+  useEffect(() => {
+    return () => {
+      if (waveTimeoutRef.current) {
+        clearTimeout(waveTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleApproveCancellation = async (bookingId) => {
     await updateBookingStatus(bookingId, "cancelled");
@@ -182,15 +238,35 @@ const AdminPage = () => {
 
   return (
     <div className={styles.page}>
-      <Link to="/" className={`${navbarStyles.logoContainer} ${styles.pageLogo}`}>
-        <img className={navbarStyles.logo} src={logo} alt="AstroJets logo" />
-        <img
-          className={navbarStyles.waves}
-          src={waves}
-          alt=""
-          aria-hidden="true"
-        />
-      </Link>
+      <div
+        className={`${styles.topBar} ${scrolled ? styles.scrolled : ""} ${
+          hidden ? styles.hide : ""
+        }`}
+      >
+        <button
+          type="button"
+          onClick={handleAdminHomeClick}
+          className={styles.pageLogoButton}
+        >
+          <img className={navbarStyles.logo} src={logo} alt="AstroJets logo" />
+          <img
+            className={`${navbarStyles.waves} ${waveAnimating ? styles.waveActive : ""}`}
+            src={waves}
+            alt=""
+            aria-hidden="true"
+          />
+        </button>
+
+        <button
+          type="button"
+          className={styles.adminLogoutButton}
+          onClick={handleAdminLogout}
+          aria-label="Log out"
+          title="Log out"
+        >
+          ⍈
+        </button>
+      </div>
 
       <div className={styles.pageContent}>
         <div className={styles.header}>
