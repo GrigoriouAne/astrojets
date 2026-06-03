@@ -60,10 +60,10 @@ const FaqItem = ({ question, answer, isOpen, onClick }) => {
 };
 
 const FaqSection = () => {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   const handleToggle = (index) => {
-    setOpenIndex((prev) => (prev === index ? -1 : index));
+    setOpenIndex((prev) => (prev === index ? null : index));
   };
 
   return (
