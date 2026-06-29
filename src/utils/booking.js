@@ -1,10 +1,6 @@
 import { supabase } from "./supabase";
 
 export const BOOKING_SLOTS = [
-  "09:00",
-  "09:30",
-  "10:00",
-  "10:30",
   "11:00",
   "11:30",
   "12:00",
@@ -16,7 +12,6 @@ export const BOOKING_SLOTS = [
   "18:00",
   "18:30",
   "19:00",
-  "19:30",
 ];
 
 export const PRICING = {
